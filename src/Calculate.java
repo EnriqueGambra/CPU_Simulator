@@ -5,8 +5,10 @@ import javax.swing.JOptionPane;
 
 class Calculate 
 {
-    
-    
+   private int avgBurst;
+   private int pro1;
+   private int pro2;
+   private int pro3;
     public Calculate(String algo, int processNum, HashMap<Integer, Integer> burstMap)
     {
         
@@ -14,15 +16,20 @@ class Calculate
         {
             FCFS(burstMap, processNum);
         }
+        
+        else if(algo == "2. SJF")
+        {
+            SJF(burstMap, processNum);
+        }
+                
+    
+                
     }
     
     public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)
     {
         
-        int avgBurst;
-        int pro1;
-        int pro2;
-        int pro3;
+        
         if(processNum == 1)
         {
             pro1 = burstMap.get(1);
@@ -52,6 +59,14 @@ class Calculate
             JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
         }
             
+    }
+    
+    public void SJF(HashMap<Integer, Integer> burstMap, int processNum)
+    {
+        if(processNum == 1)
+        {
+            
+        }
     }
     
 
