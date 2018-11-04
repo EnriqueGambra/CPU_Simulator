@@ -10,6 +10,14 @@ class Calculate
         {
             FCFS(burstMap, processNum);
         }
+        
+        else if(algo == "2. SJF")
+        {
+            SJF(burstMap, processNum);
+        }
+                
+    
+                
     }
     
     public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)
@@ -244,4 +252,14 @@ class Calculate
         
             
     }
+    
+    public void SJF(HashMap<Integer, Integer> burstMap, int processNum)
+    {
+        if(processNum == 1)
+        {
+            
+        }
+    }
+    
+
 }

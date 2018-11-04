@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Processes extends JPanel
 {
-    private String[] schedulingAlgo = {"1. FCFS", "2. HPF"};
+    private String[] schedulingAlgo = {"1. FCFS", "2. SJF"};
     private JComboBox algoCombo = new JComboBox(schedulingAlgo);
     private Integer[] processList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     private JComboBox<Integer> processCombo = new JComboBox(processList);
