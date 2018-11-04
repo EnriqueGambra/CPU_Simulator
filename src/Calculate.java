@@ -257,7 +257,8 @@ class Calculate
     
     public void SJF(HashMap<Integer, Integer> burstMap, int processNum)
     {
-        
+        Integer[] processSort;
+        processSort = sortHashMap(burstMap, processNum);
         HashMap <Integer, Integer> burstSorted = new HashMap<Integer, Integer>();
         if(processNum == 1)
         {
@@ -265,21 +266,191 @@ class Calculate
             JOptionPane.showMessageDialog(null, "Process " + burstMap.get(pro1) + " executes first with a burst time of " + pro1);
             JOptionPane.showMessageDialog(null, "The average burst time is " + pro1);
         }
-        
         else if(processNum == 2)
         {
-            Integer[] processSort;
-            processSort = sortHashMap(burstMap, processNum);
-            
             pro1 = processSort[0];
             pro2 = processSort[1];
-            burstMap.get(pro1);
-            burstMap.get(pro2);
             
-            JOptionPane.showMessageDialog(null, "Process " + burstMap.get(pro1) + " executes first with a burst time of " + pro1
-                                            + "! \n" + burstMap.get(pro2) + " executes second with a burst time of " + pro2);
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
             
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2);   
         }
+        else if(processNum == 3)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3);
+        }
+        else if(processNum == 4)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3);
+        }
+         else if(processNum == 5)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+        }
+        else if(processNum == 6)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            pro6 = processSort[5];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+            burstSorted.get(pro6);
+        }
+        else if(processNum == 7)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            pro6 = processSort[5];
+            pro7 = processSort[6];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+            burstSorted.get(pro6);
+            burstSorted.get(pro7);
+        }
+        else if(processNum == 8)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            pro6 = processSort[5];
+            pro7 = processSort[6];
+            pro8 = processSort[7];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+            burstSorted.get(pro6);
+            burstSorted.get(pro7);
+            burstSorted.get(pro8);
+        }
+        else if(processNum == 9)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            pro6 = processSort[5];
+            pro7 = processSort[6];
+            pro8 = processSort[7];
+            pro9 = processSort[8];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+            burstSorted.get(pro6);
+            burstSorted.get(pro7);
+            burstSorted.get(pro8);
+            burstSorted.get(pro9);
+        }
+        else if(processNum == 10)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            pro6 = processSort[5];
+            pro7 = processSort[6];
+            pro8 = processSort[7];
+            pro9 = processSort[8];
+            pro10 = processSort[9];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+            burstSorted.get(pro6);
+            burstSorted.get(pro7);
+            burstSorted.get(pro8);
+            burstSorted.get(pro9);
+            burstSorted.get(pro10);
+        }
+        else if(processNum == 11)
+        {
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            pro3 = processSort[2];
+            pro4 = processSort[3];
+            pro5 = processSort[4];
+            pro6 = processSort[5];
+            pro7 = processSort[6];
+            pro8 = processSort[7];
+            pro9 = processSort[8];
+            pro10 = processSort[9];
+            pro11 = processSort[10];
+            burstSorted = switchKeys(burstMap);
+            burstSorted.get(pro1);
+            burstSorted.get(pro2);
+            burstSorted.get(pro3);
+            burstSorted.get(pro4);
+            burstSorted.get(pro5);
+            burstSorted.get(pro6);
+            burstSorted.get(pro7);
+            burstSorted.get(pro8);
+            burstSorted.get(pro9);
+            burstSorted.get(pro10);
+            burstSorted.get(pro11);
+        }
+        
     }
     
     public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)
@@ -307,7 +478,13 @@ class Calculate
     
     public HashMap<Integer, Integer> switchKeys(HashMap<Integer, Integer> burstMap)
     {
-        return burstMap;
+        HashMap<Integer, Integer> reverse = new HashMap<>();
+        for(int i = 0; i < burstMap.size(); i++)
+        {
+            int z = burstMap.get(i + 1);
+            reverse.put(z, i + 1);
+        }
+        return reverse;
     }
     
 
