@@ -15,6 +15,5 @@ public class GuiBuilder extends JFrame
         add(new Processes());
         setVisible(true);
     }
-    
-    
+ 
 }
