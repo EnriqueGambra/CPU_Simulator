@@ -4,6 +4,19 @@ import javax.swing.JOptionPane;
 class Calculate 
 {
         
+        int avgBurst;
+        int pro1;
+        int pro2;
+        int pro3;
+        int pro4;
+        int pro5;
+        int pro6;
+        int pro7;
+        int pro8;
+        int pro9;
+        int pro10;
+        int pro11;
+        
     public Calculate(String algo, int processNum, HashMap<Integer, Integer> burstMap)
     {    
         if(algo == "1. FCFS")
@@ -22,18 +35,7 @@ class Calculate
     
     public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)
     {   
-        int avgBurst;
-        int pro1;
-        int pro2;
-        int pro3;
-        int pro4;
-        int pro5;
-        int pro6;
-        int pro7;
-        int pro8;
-        int pro9;
-        int pro10;
-        int pro11;
+        
         
         if(processNum == 1)
         {
@@ -255,10 +257,57 @@ class Calculate
     
     public void SJF(HashMap<Integer, Integer> burstMap, int processNum)
     {
+        
+        HashMap <Integer, Integer> burstSorted = new HashMap<Integer, Integer>();
         if(processNum == 1)
         {
+            pro1 = burstMap.get(1);
+            JOptionPane.showMessageDialog(null, "Process " + burstMap.get(pro1) + " executes first with a burst time of " + pro1);
+            JOptionPane.showMessageDialog(null, "The average burst time is " + pro1);
+        }
+        
+        else if(processNum == 2)
+        {
+            Integer[] processSort;
+            processSort = sortHashMap(burstMap, processNum);
+            
+            pro1 = processSort[0];
+            pro2 = processSort[1];
+            burstMap.get(pro1);
+            burstMap.get(pro2);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstMap.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \n" + burstMap.get(pro2) + " executes second with a burst time of " + pro2);
             
         }
+    }
+    
+    public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)
+    {
+        Integer[] processSorted = new Integer[processNum];
+        int temp;
+        for(int i = 0; i < burstMap.size(); i++)
+        {
+           processSorted[i] = burstMap.get(i + 1);
+        }
+        
+        for(int z = 0; z < processSorted.length - 1; z++)
+        {
+            if(processSorted[z] > processSorted[z + 1])
+            {
+                temp = processSorted[z];
+                processSorted[z] = processSorted[z + 1];
+                processSorted[z + 1] = temp;
+            }
+        }
+        
+        return processSorted;
+        
+    }
+    
+    public HashMap<Integer, Integer> switchKeys(HashMap<Integer, Integer> burstMap)
+    {
+        return burstMap;
     }
     
 
