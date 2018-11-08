@@ -3,7 +3,6 @@ import javax.swing.JOptionPane;
 
 class Calculate 
 {
-        
         int avgBurst;
         int pro1;
         int pro2;
@@ -27,10 +26,7 @@ class Calculate
         else if(algo == "2. SJF")
         {
             SJF(burstMap, processNum);
-        }
-                
-    
-                
+        }            
     }
     
     public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)
