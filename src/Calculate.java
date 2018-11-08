@@ -460,13 +460,18 @@ class Calculate
         
         for(int z = 0; z < processSorted.length - 1; z++)
         {
-            if(processSorted[z] > processSorted[z + 1])
+            for(int j = z+1; j < processSorted.length; j++)
             {
-                temp = processSorted[z];
-                processSorted[z] = processSorted[z + 1];
-                processSorted[z + 1] = temp;
+                if(processSorted[z] > processSorted[j])
+                {
+                temp = processSorted[j];
+                processSorted[j] = processSorted[z];
+                processSorted[z] = temp;
+                }
             }
+            
         }
+        
         
         return processSorted;
         
