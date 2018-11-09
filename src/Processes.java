@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.*;
+import java.util.Random;
 
 public class Processes extends JPanel
 {
@@ -43,6 +44,8 @@ public class Processes extends JPanel
     
     private JLabel comboLabel = new JLabel("Select number of Processes");
     private JLabel scheduleLabel = new JLabel("Select the algorithm you'd like to use");
+    private JButton buttonReset = new JButton("Reset");
+    private JButton buttonRandom = new JButton("Random");
     
     private Calculate obj1;
     
@@ -50,13 +53,30 @@ public class Processes extends JPanel
     {
         super();
         setLayout(null);
-        setBounds(0, 0, 900, 900);
+        setBounds(0, 0, 900, 600);
         drawComboBox();
         drawExecuteButton();
         drawSchedulingAlgos();
-        
-      
+        drawResetButton();
+        drawRandomizeButton();
         repaint();
+    }
+    
+    public void drawResetButton()
+    {
+        buttonReset.setBounds(590, 40, 90, 30);
+        handleEvent handler = new handleEvent();
+        buttonReset.addActionListener(handler);
+        add(buttonReset);
+    }
+    
+    public void drawRandomizeButton()
+    {
+        buttonRandom.setBounds(475, 40, 90, 30);
+        handleEvent handler = new handleEvent();
+        buttonRandom.addActionListener(handler);
+        add(buttonRandom);
+        
     }
     
     public void drawComboBox()
@@ -72,18 +92,18 @@ public class Processes extends JPanel
     public void setNumOfProcess(int numOfProcesses)
     {
         this.numOfProcesses = numOfProcesses;
-        System.out.println("In setNumOfProcess " + this.numOfProcesses);
+        //System.out.println("In setNumOfProcess " + this.numOfProcesses);
     }
     
     public int getNumOfProcess()
     {
-        System.out.println("In getNumOfProcesses " + numOfProcesses);
+        //System.out.println("In getNumOfProcesses " + numOfProcesses);
         return numOfProcesses;
     }
 
     public void drawExecuteButton() 
     {
-       buttonExecute.setBounds(700, 40, 80, 40);
+       buttonExecute.setBounds(705, 40, 90, 30);
        handleEvent handler = new handleEvent();
        buttonExecute.addActionListener(handler);
        add(buttonExecute);
@@ -473,10 +493,22 @@ public class Processes extends JPanel
         
     }
     
+    public void setText1(int burstTime)
+    {
+        text1.setText(Integer.toString(burstTime));
+        repaint();
+    }
+    
     public int getText1()
     {
         int x = Integer.parseInt(text1.getText());
         return x;
+    }
+    
+    public void setText2(int burstTime)
+    {
+        text2.setText(Integer.toString(burstTime));
+        repaint();
     }
     
     public int getText2()
@@ -485,10 +517,22 @@ public class Processes extends JPanel
         return x;
     }
     
+    public void setText3(int burstTime)
+    {
+        text3.setText(Integer.toString(burstTime));
+        repaint();
+    }
+    
     public int getText3()
     {
         int x = Integer.parseInt(text3.getText());
         return x;
+    }
+    
+    public void setText4(int burstTime)
+    {
+        text4.setText(Integer.toString(burstTime));
+        repaint();
     }
     
     public int getText4()
@@ -497,10 +541,22 @@ public class Processes extends JPanel
         return x;
     }
     
+    public void setText5(int burstTime)
+    {
+        text5.setText(Integer.toString(burstTime));
+        repaint();
+    }
+    
     public int getText5()
     {
         int x = Integer.parseInt(text5.getText());
         return x;
+    }
+    
+    public void setText6(int burstTime)
+    {
+        text6.setText(Integer.toString(burstTime));
+        repaint();
     }
     
     public int getText6()
@@ -509,10 +565,22 @@ public class Processes extends JPanel
         return x;
     }
     
+    public void setText7(int burstTime)
+    {
+        text7.setText(Integer.toString(burstTime));
+        repaint();
+    }
+    
     public int getText7()
     {
         int x = Integer.parseInt(text7.getText());
         return x;
+    }
+    
+    public void setText8(int burstTime)
+    {
+        text8.setText(Integer.toString(burstTime));
+        repaint();
     }
     
     public int getText8()
@@ -521,10 +589,22 @@ public class Processes extends JPanel
         return x;
     }
     
+    public void setText9(int burstTime)
+    {
+        text9.setText(Integer.toString(burstTime));
+        repaint();
+    }
+    
     public int getText9()
     {
         int x = Integer.parseInt(text9.getText());
         return x;
+    }
+    
+    public void setText10(int burstTime)
+    {
+        text10.setText(Integer.toString(burstTime));
+        repaint();
     }
     
     public int getText10()
@@ -533,10 +613,33 @@ public class Processes extends JPanel
         return x;
     }
     
+    public void setText11(int burstTime)
+    {
+        text11.setText(Integer.toString(burstTime));
+        repaint();
+    }
+    
     public int getText11()
     {
         int x = Integer.parseInt(text11.getText());
         return x;
+    }
+    
+    public void randomizerButton()
+    {
+        int numOfProcesses = getNumOfProcess();
+          
+        setText1((int) (Math.random() * 50));
+        setText2((int) (Math.random() * 50));
+        setText3((int) (Math.random() * 50));
+        setText4((int) (Math.random() * 50));
+        setText5((int) (Math.random() * 50));
+        setText6((int) (Math.random() * 50));
+        setText7((int) (Math.random() * 50));
+        setText8((int) (Math.random() * 50));
+        setText9((int) (Math.random() * 50));
+        setText10((int) (Math.random() * 50));
+        setText11((int) (Math.random() * 50));
     }
 
     private class handleEvent implements ActionListener
@@ -787,6 +890,50 @@ public class Processes extends JPanel
             {
                 String algoSelected =  (String) algoCombo.getSelectedItem();
                 setAlgoSelected(algoSelected);
+            }
+            else if(e.getSource() == buttonReset)
+            {
+            text1.setVisible(false);
+            text2.setVisible(false);
+            text3.setVisible(false);
+            text4.setVisible(false);
+            text5.setVisible(false);
+            text6.setVisible(false);
+            text7.setVisible(false);
+            text8.setVisible(false);
+            text9.setVisible(false);
+            text10.setVisible(false);
+            text11.setVisible(false);
+            
+            label1.setVisible(false);
+            label2.setVisible(false);
+            label3.setVisible(false);
+            label4.setVisible(false);
+            label5.setVisible(false);
+            label6.setVisible(false);
+            label7.setVisible(false);
+            label8.setVisible(false);
+            label9.setVisible(false);
+            label10.setVisible(false);
+            label11.setVisible(false);
+            
+            repaint();
+            
+            text1.setText("0");
+            text2.setText("0");
+            text3.setText("0");
+            text4.setText("0");
+            text5.setText("0");
+            text6.setText("0");
+            text7.setText("0");
+            text8.setText("0");
+            text9.setText("0");
+            text10.setText("0");
+            text11.setText("0");
+            }
+            else if(e.getSource() == buttonRandom)
+            {
+                randomizerButton();
             }
         }    
     }
