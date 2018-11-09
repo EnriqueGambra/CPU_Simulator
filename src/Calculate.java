@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 class Calculate 
 {
         int avgBurst;
+        int avgTurnAround;
+        int avgWait;
         int pro1;
         int pro2;
         int pro3;
@@ -41,25 +43,26 @@ class Calculate
             pro1 = burstMap.get(1);
             pro2 = burstMap.get(2);
             
+            avgWait = pro2;
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 
                     + "! \nProcess 2 executes second with a burst time of " + pro2 + "!");
             
-            avgBurst = (pro1 + pro2) / 2;
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 3)
         {
             pro1 = burstMap.get(1);
             pro2 = burstMap.get(2);
             pro3 = burstMap.get(3);
-            avgBurst = (pro1 + pro2 + pro3) /3;
+            avgWait = ((pro1*2) + pro2) /3;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
                     + "! \nProcess 3 executes last with a burst time of " + pro3 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 4)
         {
@@ -67,7 +70,7 @@ class Calculate
             pro2 = burstMap.get(2);
             pro3 = burstMap.get(3);
             pro4 = burstMap.get(4);
-            avgBurst = (pro1 + pro2 + pro3 + pro4) / 4;
+            avgWait = ((pro1 * 3) + (pro2*2) + pro3) / 4;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -75,7 +78,7 @@ class Calculate
                     + "! \nProcess 4 executes last with a burst time of " + pro4 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 5)
         {
@@ -84,7 +87,7 @@ class Calculate
             pro3 = burstMap.get(3);
             pro4 = burstMap.get(4);
             pro5 = burstMap.get(5);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5) / 5;
+            avgWait = ((pro1*4) + (pro2*3) + (pro3*2) + pro4) / 5;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -93,7 +96,7 @@ class Calculate
                     + "! \nProcess 5 executes last with a burst time of " + pro5 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 6)
         {
@@ -103,7 +106,7 @@ class Calculate
             pro4 = burstMap.get(4);
             pro5 = burstMap.get(5);
             pro6 = burstMap.get(6);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5 + pro6) / 6;
+            avgWait = ((pro1*5) + (pro2*4) + (pro3*3) + (pro4*2) + pro5) / 6;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -113,7 +116,7 @@ class Calculate
                     + "! \nProcess 6 executes last with a burst time of " + pro6 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 7)
         {
@@ -124,7 +127,7 @@ class Calculate
             pro5 = burstMap.get(5);
             pro6 = burstMap.get(6);
             pro7 = burstMap.get(7);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5 + pro6 + pro7) / 7;
+            avgWait = ((pro1*6) + (pro2*5) + (pro3*4) + (pro4*3) + (pro5*2) + pro6) / 7;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -135,7 +138,7 @@ class Calculate
                     + "! \nProcess 7 executes last with a burst time of " + pro7 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgBurst);
         }
         else if(processNum == 8)
         {
@@ -147,7 +150,7 @@ class Calculate
             pro6 = burstMap.get(6);
             pro7 = burstMap.get(7);
             pro8 = burstMap.get(8);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5 + pro6 + pro7 + pro8) / 8;
+            avgWait = ((pro1*7) + (pro2*6) + (pro3*5) + (pro4*4) + (pro5*3) + (pro6*2) + pro7) / 8;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -159,7 +162,7 @@ class Calculate
                     + "! \nProcess 8 executes last with a burst time of " + pro8 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 9)
         {
@@ -172,7 +175,7 @@ class Calculate
             pro7 = burstMap.get(7);
             pro8 = burstMap.get(8);
             pro9 = burstMap.get(9);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5 + pro6 + pro7 + pro8 + pro9) / 9;
+            avgWait = ((pro1*8) + (pro2*7) + (pro3*6) + (pro4*5) + (pro5*4) + (pro6*3) + (pro7*2) + pro8) / 9;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -185,7 +188,7 @@ class Calculate
                     + "! \nProcess 9 executes last with a burst time of " + pro9 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 10)
         {
@@ -199,7 +202,7 @@ class Calculate
             pro8 = burstMap.get(8);
             pro9 = burstMap.get(9);
             pro10 = burstMap.get(10);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5 + pro6 + pro7 + pro8 + pro9 + pro10) / 10;
+            avgWait = ((pro1*9) + (pro2*8) + (pro3*7) + (pro4*6) + (pro5*5) + (pro6*4) + (pro7*3) + (pro8*2) + pro9) / 10;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -213,7 +216,7 @@ class Calculate
                     + "! \nProcess 10 executes last with a burst time of " + pro10 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         else if(processNum == 11)
         {
@@ -228,7 +231,7 @@ class Calculate
             pro9 = burstMap.get(9);
             pro10 = burstMap.get(10);
             pro11 = burstMap.get(11);
-            avgBurst = (pro1 + pro2 + pro3 + pro4 + pro5 + pro6 + pro7 + pro8 + pro9 + pro10 + pro11) / 11;
+            avgWait = ((pro1*10) + (pro2*9) + (pro3*8) + (pro4*7) + (pro5*6) + (pro6*5) + (pro7*4) + (pro8*3) + (pro9*2) + pro10) / 11;
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -243,7 +246,7 @@ class Calculate
                     + "! \nProcess 11 executes last with a burst time of " + pro11 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average burst time is " + avgBurst);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
         }
         
             
@@ -444,7 +447,7 @@ class Calculate
             burstSorted.get(pro10);
             burstSorted.get(pro11);
         }
-        
+       
     }
     
     public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)//This method sorts the hashmap from shortest value to largest value
@@ -460,7 +463,7 @@ class Calculate
         {
             for(int j = z+1; j < processSorted.length; j++)
             {
-                if(processSorted[z] > processSorted[j])
+                if((processSorted[z] > processSorted[j]) && (z != j))
                 {
                 temp = processSorted[j];
                 processSorted[j] = processSorted[z];

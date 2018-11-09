@@ -629,17 +629,17 @@ public class Processes extends JPanel
     {
         int numOfProcesses = getNumOfProcess();
           
-        setText1((int) (Math.random() * 50));
-        setText2((int) (Math.random() * 50));
-        setText3((int) (Math.random() * 50));
-        setText4((int) (Math.random() * 50));
-        setText5((int) (Math.random() * 50));
-        setText6((int) (Math.random() * 50));
-        setText7((int) (Math.random() * 50));
-        setText8((int) (Math.random() * 50));
-        setText9((int) (Math.random() * 50));
-        setText10((int) (Math.random() * 50));
-        setText11((int) (Math.random() * 50));
+        setText1((int) (Math.random() * 25) + 1);
+        setText2((int) (Math.random() * 25) + 1);
+        setText3((int) (Math.random() * 25) + 1);
+        setText4((int) (Math.random() * 25) + 1);
+        setText5((int) (Math.random() * 25) + 1);
+        setText6((int) (Math.random() * 25) + 1);
+        setText7((int) (Math.random() * 25) + 1);
+        setText8((int) (Math.random() * 25) + 1);
+        setText9((int) (Math.random() * 25) + 1);
+        setText10((int) (Math.random() * 25) + 1);
+        setText11((int) (Math.random() * 25) + 1);
     }
 
     private class handleEvent implements ActionListener
