@@ -36,6 +36,8 @@ class Calculate
         if(processNum == 1)                                             //outputting the algo
         {
             pro1 = burstMap.get(1);
+            avgWait = 0;
+            avgTurnAround = pro1;
             JOptionPane.showMessageDialog(null, "The first process to execute is " + pro1 + "!");
         }
         else if(processNum == 2)
@@ -43,26 +45,31 @@ class Calculate
             pro1 = burstMap.get(1);
             pro2 = burstMap.get(2);
             
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             avgWait = pro2;
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 
                     + "! \nProcess 2 executes second with a burst time of " + pro2 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 3)
         {
             pro1 = burstMap.get(1);
             pro2 = burstMap.get(2);
             pro3 = burstMap.get(3);
+            
             avgWait = ((pro1*2) + pro2) /3;
+            
+            //avgTurnAround = (pro1 + (pro1 + pro2) + (pro1 + pro2 + pro3)) / 3;
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
                     + "! \nProcess 3 executes last with a burst time of " + pro3 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 4)
         {
@@ -70,7 +77,10 @@ class Calculate
             pro2 = burstMap.get(2);
             pro3 = burstMap.get(3);
             pro4 = burstMap.get(4);
+            
             avgWait = ((pro1 * 3) + (pro2*2) + pro3) / 4;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -78,7 +88,7 @@ class Calculate
                     + "! \nProcess 4 executes last with a burst time of " + pro4 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 5)
         {
@@ -87,7 +97,10 @@ class Calculate
             pro3 = burstMap.get(3);
             pro4 = burstMap.get(4);
             pro5 = burstMap.get(5);
+            
             avgWait = ((pro1*4) + (pro2*3) + (pro3*2) + pro4) / 5;
+            
+           avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -96,7 +109,7 @@ class Calculate
                     + "! \nProcess 5 executes last with a burst time of " + pro5 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 6)
         {
@@ -106,7 +119,10 @@ class Calculate
             pro4 = burstMap.get(4);
             pro5 = burstMap.get(5);
             pro6 = burstMap.get(6);
+            
             avgWait = ((pro1*5) + (pro2*4) + (pro3*3) + (pro4*2) + pro5) / 6;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -127,7 +143,10 @@ class Calculate
             pro5 = burstMap.get(5);
             pro6 = burstMap.get(6);
             pro7 = burstMap.get(7);
+            
             avgWait = ((pro1*6) + (pro2*5) + (pro3*4) + (pro4*3) + (pro5*2) + pro6) / 7;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -150,7 +169,10 @@ class Calculate
             pro6 = burstMap.get(6);
             pro7 = burstMap.get(7);
             pro8 = burstMap.get(8);
+            
             avgWait = ((pro1*7) + (pro2*6) + (pro3*5) + (pro4*4) + (pro5*3) + (pro6*2) + pro7) / 8;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -175,7 +197,10 @@ class Calculate
             pro7 = burstMap.get(7);
             pro8 = burstMap.get(8);
             pro9 = burstMap.get(9);
+            
             avgWait = ((pro1*8) + (pro2*7) + (pro3*6) + (pro4*5) + (pro5*4) + (pro6*3) + (pro7*2) + pro8) / 9;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -202,7 +227,10 @@ class Calculate
             pro8 = burstMap.get(8);
             pro9 = burstMap.get(9);
             pro10 = burstMap.get(10);
+            
             avgWait = ((pro1*9) + (pro2*8) + (pro3*7) + (pro4*6) + (pro5*5) + (pro6*4) + (pro7*3) + (pro8*2) + pro9) / 10;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -231,7 +259,10 @@ class Calculate
             pro9 = burstMap.get(9);
             pro10 = burstMap.get(10);
             pro11 = burstMap.get(11);
+            
             avgWait = ((pro1*10) + (pro2*9) + (pro3*8) + (pro4*7) + (pro5*6) + (pro6*5) + (pro7*4) + (pro8*3) + (pro9*2) + pro10) / 11;
+            
+            avgTurnAround = avgTurnAround(burstMap, processNum);
             
             JOptionPane.showMessageDialog(null, "Process 1 executes first with a burst time of " + pro1 + 
                     "!" + " \nProcess 2 executes second with a burst time of " + pro2 
@@ -448,6 +479,44 @@ class Calculate
             burstSorted.get(pro11);
         }
        
+    }
+    
+    public int avgTurnAround(HashMap<Integer, Integer> burstMap, int processNum)
+    {
+        Integer[] avgTurnAroundTime = getCompletionTime(burstMap, processNum);
+        int turnAround = 0;
+        for(int i = 0; i < avgTurnAroundTime.length; i++)
+        {
+           turnAround = turnAround + avgTurnAroundTime[i];
+        }
+        
+        return turnAround/processNum;
+    }
+    
+    public Integer[] getCompletionTime(HashMap<Integer, Integer> burstMap, int processNum)
+    {
+        Integer[] completionTime = new Integer[processNum];
+        
+        for(int i = 0; i < completionTime.length; i++)
+        {
+            if(i == 0)
+            {
+                completionTime[i] = burstMap.get(i + 1);
+            }
+            else
+            {
+                for(int z = 1; z < completionTime.length; z++)
+                {
+                    completionTime[z] = completionTime[z - 1] + burstMap.get(z + 1);
+                }
+            }
+        }
+        
+        for(int x = 0; x < completionTime.length; x++)
+        {
+            System.out.println(completionTime[x]);
+        }
+        return completionTime;
     }
     
     public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)//This method sorts the hashmap from shortest value to largest value
