@@ -29,11 +29,9 @@ class Calculate
         }            
     }
     
-    public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)
-    {   
-        
-        
-        if(processNum == 1)
+    public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)//This method computes the FCFS algorithm by getting the values from the
+    {                                                                   //hashmap and then as well getting the number of processes and simply
+        if(processNum == 1)                                             //outputting the algo
         {
             pro1 = burstMap.get(1);
             JOptionPane.showMessageDialog(null, "The first process to execute is " + pro1 + "!");
@@ -249,11 +247,11 @@ class Calculate
         }
         
             
-    }
+    }                                           
     
-    public void SJF(HashMap<Integer, Integer> burstMap, int processNum)
-    {
-        Integer[] processSort;
+    public void SJF(HashMap<Integer, Integer> burstMap, int processNum)//This method computes the SJF algo by getting in a hashmap and then 
+    {                                                                   //calling the sortHashMap method to sort the values in the correct form
+        Integer[] processSort;                                          //for the SJF algo
         processSort = sortHashMap(burstMap, processNum);
         HashMap <Integer, Integer> burstSorted = new HashMap<Integer, Integer>();
         if(processNum == 1)
@@ -449,9 +447,9 @@ class Calculate
         
     }
     
-    public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)
-    {
-        Integer[] processSorted = new Integer[processNum];
+    public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)//This method sorts the hashmap from shortest value to largest value
+    {                                                                               //by creating an array that gets the values from the hashmap...
+        Integer[] processSorted = new Integer[processNum];                          //It then returns the sorted array
         int temp;
         for(int i = 0; i < burstMap.size(); i++)
         {
@@ -477,10 +475,10 @@ class Calculate
         
     }
     
-    public HashMap<Integer, Integer> switchKeys(HashMap<Integer, Integer> burstMap)
-    {
-        HashMap<Integer, Integer> reverse = new HashMap<>();
-        for(int i = 0; i < burstMap.size(); i++)
+    public HashMap<Integer, Integer> switchKeys(HashMap<Integer, Integer> burstMap)//This method switches the keys for the hashmap so that when it returns
+    {                                                                              //the switched hashmap, it can compare the values of the original 
+        HashMap<Integer, Integer> reverse = new HashMap<>();                       //hashmap to the reversed and outputs the correct values in an order
+        for(int i = 0; i < burstMap.size(); i++)                                   //that the SJF algo requires
         {
             int z = burstMap.get(i + 1);
             reverse.put(z, i + 1);
