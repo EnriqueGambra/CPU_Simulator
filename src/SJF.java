@@ -86,10 +86,7 @@ public class SJF
                                             + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
                                             + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
                                             + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4);
-            
-            
-            
-            
+
         }
          else if(processNum == 5)
         {
@@ -104,6 +101,12 @@ public class SJF
             burstSorted.get(pro3);
             burstSorted.get(pro4);
             burstSorted.get(pro5);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5);
         }
         else if(processNum == 6)
         {
@@ -120,6 +123,13 @@ public class SJF
             burstSorted.get(pro4);
             burstSorted.get(pro5);
             burstSorted.get(pro6);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5
+                                            + "! \nProcess " + burstSorted.get(pro6) + " executes fourth with a burst time of " + pro6);
         }
         else if(processNum == 7)
         {
@@ -138,6 +148,14 @@ public class SJF
             burstSorted.get(pro5);
             burstSorted.get(pro6);
             burstSorted.get(pro7);
+            
+           JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5
+                                            + "! \nProcess " + burstSorted.get(pro6) + " executes fourth with a burst time of " + pro6
+                                            + "! \nProcess " + burstSorted.get(pro7) + " executes fourth with a burst time of " + pro7);
         }
         else if(processNum == 8)
         {
@@ -158,6 +176,15 @@ public class SJF
             burstSorted.get(pro6);
             burstSorted.get(pro7);
             burstSorted.get(pro8);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5
+                                            + "! \nProcess " + burstSorted.get(pro6) + " executes fourth with a burst time of " + pro6
+                                            + "! \nProcess " + burstSorted.get(pro7) + " executes fourth with a burst time of " + pro7
+                                            + "! \nProcess " + burstSorted.get(pro8) + " executes fourth with a burst time of " + pro8);
         }
         else if(processNum == 9)
         {
@@ -180,6 +207,16 @@ public class SJF
             burstSorted.get(pro7);
             burstSorted.get(pro8);
             burstSorted.get(pro9);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5
+                                            + "! \nProcess " + burstSorted.get(pro6) + " executes fourth with a burst time of " + pro6
+                                            + "! \nProcess " + burstSorted.get(pro7) + " executes fourth with a burst time of " + pro7
+                                            + "! \nProcess " + burstSorted.get(pro8) + " executes fourth with a burst time of " + pro8
+                                            + "! \nProcess " + burstSorted.get(pro9) + " executes fourth with a burst time of " + pro9);
         }
         else if(processNum == 10)
         {
@@ -204,6 +241,17 @@ public class SJF
             burstSorted.get(pro8);
             burstSorted.get(pro9);
             burstSorted.get(pro10);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5
+                                            + "! \nProcess " + burstSorted.get(pro6) + " executes fourth with a burst time of " + pro6
+                                            + "! \nProcess " + burstSorted.get(pro7) + " executes fourth with a burst time of " + pro7
+                                            + "! \nProcess " + burstSorted.get(pro8) + " executes fourth with a burst time of " + pro8
+                                            + "! \nProcess " + burstSorted.get(pro9) + " executes fourth with a burst time of " + pro9
+                                            + "! \nProcess " + burstSorted.get(pro10) + " executes fourth with a burst time of " + pro10);
         }
         else if(processNum == 11)
         {
@@ -230,6 +278,18 @@ public class SJF
             burstSorted.get(pro9);
             burstSorted.get(pro10);
             burstSorted.get(pro11);
+            
+            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
+                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
+                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3
+                                            + "! \nProcess " + burstSorted.get(pro4) + " executes fourth with a burst time of " + pro4
+                                            + "! \nProcess " + burstSorted.get(pro5) + " executes fourth with a burst time of " + pro5
+                                            + "! \nProcess " + burstSorted.get(pro6) + " executes fourth with a burst time of " + pro6
+                                            + "! \nProcess " + burstSorted.get(pro7) + " executes fourth with a burst time of " + pro7
+                                            + "! \nProcess " + burstSorted.get(pro8) + " executes fourth with a burst time of " + pro8
+                                            + "! \nProcess " + burstSorted.get(pro9) + " executes fourth with a burst time of " + pro9
+                                            + "! \nProcess " + burstSorted.get(pro10) + " executes fourth with a burst time of " + pro10
+                                            + "! \nProcess " + burstSorted.get(pro11) + " executes fourth with a burst time of " + pro11);
         }
         
         avgWait = avgWaitTime(processNum, processSort);
