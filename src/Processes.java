@@ -733,8 +733,14 @@ public class Processes extends JPanel
     public void randomizerButton()
     {
         int numOfProcesses = getNumOfProcess();
+        int random;
+        
+        for(int i = 0; i < numOfProcesses; i++){
+            random = (int)(Math.random() * 25) + 1;
+            text[i].setText(Integer.toString(random));
+        }
           
-        setText1((int) (Math.random() * 25) + 1);
+        /*setText1((int) (Math.random() * 25) + 1);
         setText2((int) (Math.random() * 25) + 1);
         setText3((int) (Math.random() * 25) + 1);
         setText4((int) (Math.random() * 25) + 1);
@@ -744,7 +750,7 @@ public class Processes extends JPanel
         setText8((int) (Math.random() * 25) + 1);
         setText9((int) (Math.random() * 25) + 1);
         setText10((int) (Math.random() * 25) + 1);
-        setText11((int) (Math.random() * 25) + 1);
+        setText11((int) (Math.random() * 25) + 1);*/
     }
     
     public void drawGanttChart(int numProcesses, HashMap<Integer,Integer> burstMap)
