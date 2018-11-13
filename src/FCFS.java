@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-class Calculate 
+class FCFS 
 {
         int avgBurst;
         int avgTurnAround;
@@ -18,17 +18,9 @@ class Calculate
         int pro10;
         int pro11;
         
-    public Calculate(String algo, int processNum, HashMap<Integer, Integer> burstMap)
+    public FCFS(int processNum, HashMap<Integer, Integer> burstMap)
     {    
-        if(algo == "1. FCFS")
-        {
             FCFS(burstMap, processNum);
-        }
-        
-        else if(algo == "2. SJF")
-        {
-            SJF(burstMap, processNum);
-        }            
     }
     
     public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)//This method computes the FCFS algorithm by getting the values from the
@@ -134,7 +126,7 @@ class Calculate
                     + "! \nProcess 6 executes last with a burst time of " + pro6 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 7)
         {
@@ -159,7 +151,7 @@ class Calculate
                     + "! \nProcess 7 executes last with a burst time of " + pro7 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 8)
         {
@@ -186,7 +178,7 @@ class Calculate
                     + "! \nProcess 8 executes last with a burst time of " + pro8 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 9)
         {
@@ -215,7 +207,7 @@ class Calculate
                     + "! \nProcess 9 executes last with a burst time of " + pro9 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 10)
         {
@@ -246,7 +238,7 @@ class Calculate
                     + "! \nProcess 10 executes last with a burst time of " + pro10 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         else if(processNum == 11)
         {
@@ -279,209 +271,14 @@ class Calculate
                     + "! \nProcess 11 executes last with a burst time of " + pro11 + "!");
             
             
-            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait);
+            JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         
+        Processes obj1 = new Processes(processNum, burstMap);
             
     }                                           
     
-    public void SJF(HashMap<Integer, Integer> burstMap, int processNum)//This method computes the SJF algo by getting in a hashmap and then 
-    {                                                                   //calling the sortHashMap method to sort the values in the correct form
-        Integer[] processSort;                                          //for the SJF algo
-        processSort = sortHashMap(burstMap, processNum);
-        HashMap <Integer, Integer> burstSorted = new HashMap<Integer, Integer>();
-        if(processNum == 1)
-        {
-            pro1 = burstMap.get(1);
-            JOptionPane.showMessageDialog(null, "Process " + burstMap.get(pro1) + " executes first with a burst time of " + pro1);
-            JOptionPane.showMessageDialog(null, "The average burst time is " + pro1);
-        }
-        else if(processNum == 2)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            
-            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
-                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2);   
-        }
-        else if(processNum == 3)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            
-            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
-                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
-                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3);
-        }
-        else if(processNum == 4)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            
-            JOptionPane.showMessageDialog(null, "Process " + burstSorted.get(pro1) + " executes first with a burst time of " + pro1
-                                            + "! \nProcess " + burstSorted.get(pro2) + " executes second with a burst time of " + pro2
-                                            + "! \nProcess " + burstSorted.get(pro3) + " executes third with a burst time of " + pro3);
-        }
-         else if(processNum == 5)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-        }
-        else if(processNum == 6)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            pro6 = processSort[5];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-            burstSorted.get(pro6);
-        }
-        else if(processNum == 7)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            pro6 = processSort[5];
-            pro7 = processSort[6];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-            burstSorted.get(pro6);
-            burstSorted.get(pro7);
-        }
-        else if(processNum == 8)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            pro6 = processSort[5];
-            pro7 = processSort[6];
-            pro8 = processSort[7];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-            burstSorted.get(pro6);
-            burstSorted.get(pro7);
-            burstSorted.get(pro8);
-        }
-        else if(processNum == 9)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            pro6 = processSort[5];
-            pro7 = processSort[6];
-            pro8 = processSort[7];
-            pro9 = processSort[8];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-            burstSorted.get(pro6);
-            burstSorted.get(pro7);
-            burstSorted.get(pro8);
-            burstSorted.get(pro9);
-        }
-        else if(processNum == 10)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            pro6 = processSort[5];
-            pro7 = processSort[6];
-            pro8 = processSort[7];
-            pro9 = processSort[8];
-            pro10 = processSort[9];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-            burstSorted.get(pro6);
-            burstSorted.get(pro7);
-            burstSorted.get(pro8);
-            burstSorted.get(pro9);
-            burstSorted.get(pro10);
-        }
-        else if(processNum == 11)
-        {
-            pro1 = processSort[0];
-            pro2 = processSort[1];
-            pro3 = processSort[2];
-            pro4 = processSort[3];
-            pro5 = processSort[4];
-            pro6 = processSort[5];
-            pro7 = processSort[6];
-            pro8 = processSort[7];
-            pro9 = processSort[8];
-            pro10 = processSort[9];
-            pro11 = processSort[10];
-            burstSorted = switchKeys(burstMap);
-            burstSorted.get(pro1);
-            burstSorted.get(pro2);
-            burstSorted.get(pro3);
-            burstSorted.get(pro4);
-            burstSorted.get(pro5);
-            burstSorted.get(pro6);
-            burstSorted.get(pro7);
-            burstSorted.get(pro8);
-            burstSorted.get(pro9);
-            burstSorted.get(pro10);
-            burstSorted.get(pro11);
-        }
-       
-    }
+   
     
     public int avgWaitTime(HashMap <Integer, Integer> burstMap, int processNum)//gets avgWaitTime by creating an array passed on by the getWaitTimes
     {                                                                           //method and then finds the average
@@ -509,10 +306,9 @@ class Calculate
             }
             else
             {
-                for(int z = 1; z < waitTime.length; z++)
-                {
-                   waitTime[z] = burstMap.get(z) + waitTime[z - 1]; 
-                }
+                
+                   waitTime[i] = burstMap.get(i) + waitTime[i - 1]; 
+                
             }
         }
         
@@ -543,54 +339,15 @@ class Calculate
             }
             else
             {
-                for(int z = 1; z < completionTime.length; z++)
-                {
-                    completionTime[z] = completionTime[z - 1] + burstMap.get(z + 1);
-                }
+               
+                    completionTime[i] = completionTime[i - 1] + burstMap.get(i + 1);
+                
             }
         }
         
         return completionTime;
     }
     
-    public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)//This method sorts the hashmap from shortest value to largest value
-    {                                                                               //by creating an array that gets the values from the hashmap...
-        Integer[] processSorted = new Integer[processNum];                          //It then returns the sorted array
-        int temp;
-        for(int i = 0; i < burstMap.size(); i++)
-        {
-           processSorted[i] = burstMap.get(i + 1);
-        }
-        
-        for(int z = 0; z < processSorted.length - 1; z++)
-        {
-            for(int j = z+1; j < processSorted.length; j++)
-            {
-                if((processSorted[z] > processSorted[j]) && (z != j))
-                {
-                temp = processSorted[j];
-                processSorted[j] = processSorted[z];
-                processSorted[z] = temp;
-                }
-            }
-            
-        }
-        
-        
-        return processSorted;
-        
-    }
-    
-    public HashMap<Integer, Integer> switchKeys(HashMap<Integer, Integer> burstMap)//This method switches the keys for the hashmap so that when it returns
-    {                                                                              //the switched hashmap, it can compare the values of the original 
-        HashMap<Integer, Integer> reverse = new HashMap<>();                       //hashmap to the reversed and outputs the correct values in an order
-        for(int i = 0; i < burstMap.size(); i++)                                   //that the SJF algo requires
-        {
-            int z = burstMap.get(i + 1);
-            reverse.put(z, i + 1);
-        }
-        return reverse;
-    }
-    
+   
 
 }
