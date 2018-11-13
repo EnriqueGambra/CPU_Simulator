@@ -13,12 +13,12 @@ public class Processes extends JPanel
     // the drop down menu for choosing algorithms
     private String[] schedulingAlgo = {"1. FCFS", "2. SJF"};
     private JComboBox algoCombo = new JComboBox(schedulingAlgo);
-    private String algoSelected;
+    private String algoSelected = "1. FCFS";
     
     // the drop down menu for choosing the number of processes
     private Integer[] processList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     private JComboBox<Integer> processCombo = new JComboBox(processList);
-    private int numOfProcesses;
+    private int numOfProcesses = 0;
     
     private JButton buttonExecute = new JButton("Execute");
     
@@ -52,6 +52,8 @@ public class Processes extends JPanel
     private JLabel label11 = new JLabel("Process 11");
     
     private JTextField[] text;
+    private JLabel[] label;
+            
     private JLabel[] labelGantt;
     
     private JLabel comboLabel = new JLabel("Select number of Processes");
@@ -142,7 +144,7 @@ public class Processes extends JPanel
     // this function draws the drop down menu with the algorithms
     public void drawSchedulingAlgos() 
     {
-        scheduleLabel.setBounds(240, 15, 210, 20);
+        scheduleLabel.setBounds(220, 15, 250, 20);
         algoCombo.setBounds(270, 40, 100, 30);
         handleEvent handler = new handleEvent();
         algoCombo.addActionListener(handler);
@@ -541,32 +543,56 @@ public class Processes extends JPanel
         int w = 40;
         int h = 20;
         
+        int xL = 10;
+        int yL = 90;
+        int wL = 80;
+        int hL = 20;
+        
+        String labelString;
+        label1.setBounds(10, 90, 80, 20);
+        label2.setBounds(10, 130, 80, 20);
+        
+        // this positions the text fields and the labels on the jpanel according
+        // to the number of processes selected
+        label = new JLabel[11];
         text = new JTextField[11];
         for(int i = 0; i < text.length; i++)
         {
+            labelString = String.format("Process %d", i+1);
+            label[i] = new JLabel(labelString);
             text[i] = new JTextField("0");
             if(i == 0)
             {
-            text[i].setBounds(x, y, w, h);
+                text[i].setBounds(x, y, w, h);
+                label[i].setBounds(xL, yL, wL, hL);
             }
             else
             {
                 text[i].setBounds(x, y + (40 * i), w, h);
+                label[i].setBounds(xL, yL + (40 * i), wL, hL);
             }
             add(text[i]);
             text[i].setVisible(false);
             
+            add(label[i]);
+            label[i].setVisible(false);
+            
             repaint();
         }
         
-        for(int z= 0; z < processNum; z++)
+        // this sets visible the text fields in accordance to the # of processes
+        for(int z= 0; z <= processNum; z++)
         {
             text[z].setVisible(true);
+            label[z].setVisible(true);
         }
-
-        for(int a = processNum - 1; a < text.length; a++)
+        
+        // this for loop sets the visibility of the text fields not needed to 
+        // false .. e.g. if 5 processes selected, text fields 6-11 not shown
+        for(int a = processNum; a < text.length; a++)
         {
             text[a].setVisible(false);
+            label[a].setVisible(false);
             System.out.println(a);    
         }
         repaint();    
@@ -773,8 +799,8 @@ public class Processes extends JPanel
             {
                 numOfProcesses =  (Integer) processCombo.getSelectedItem();
                 setNumOfProcess(numOfProcesses);
-                drawTextAndLabels(numOfProcesses);
-                //moreModular(numOfProcesses);
+                //drawTextAndLabels(numOfProcesses);
+                moreModular(numOfProcesses);
             }
             
             else if(e.getSource() == buttonExecute)
