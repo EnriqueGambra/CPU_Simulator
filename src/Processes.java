@@ -8,17 +8,24 @@ import java.util.Random;
 
 public class Processes extends JPanel
 {
+    // Creating global variables related to the components in this class
+    
+    // the drop down menu for choosing algorithms
     private String[] schedulingAlgo = {"1. FCFS", "2. SJF"};
     private JComboBox algoCombo = new JComboBox(schedulingAlgo);
-    private Integer[] processList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-    private JComboBox<Integer> processCombo = new JComboBox(processList);
-    private JButton buttonExecute = new JButton("Execute");
-    private int numOfProcesses;
     private String algoSelected;
     
-    private int[] burstValues;
+    // the drop down menu for choosing the number of processes
+    private Integer[] processList = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    private JComboBox<Integer> processCombo = new JComboBox(processList);
+    private int numOfProcesses;
+    
+    private JButton buttonExecute = new JButton("Execute");
+    
+    private int[] burstValues; // an array holding burst values for each process
     private HashMap<Integer, Integer> mapBurst = new HashMap<Integer, Integer>();
     
+    // text fields to appear based on the number of processes selected
     private JTextField text1 = new JTextField("0");
     private JTextField text2 = new JTextField("0");
     private JTextField text3 = new JTextField("0");
@@ -31,6 +38,7 @@ public class Processes extends JPanel
     private JTextField text10 = new JTextField("0");
     private JTextField text11 = new JTextField("0");
     
+    // labels to appear based on the number of processes selected
     private JLabel label1 = new JLabel("Process 1");
     private JLabel label2 = new JLabel("Process 2");
     private JLabel label3 = new JLabel("Process 3");
@@ -59,11 +67,13 @@ public class Processes extends JPanel
         super();
         setLayout(null);
         setBounds(0, 0, 900, 600);
+        
         drawComboBox();
         drawExecuteButton();
         drawSchedulingAlgos();
         drawResetButton();
         drawRandomizeButton();
+        
         repaint();
     }
     
@@ -72,6 +82,8 @@ public class Processes extends JPanel
         drawGanttChart(numProcesses, burstMap);
     }
     
+    // this function places the reset button on the jpanel
+    // reset button causes simulation to return to its original state
     public void drawResetButton()
     {
         buttonReset.setBounds(590, 40, 90, 30);
@@ -80,6 +92,8 @@ public class Processes extends JPanel
         add(buttonReset);
     }
     
+    // placing the randomize button on the jpanel
+    // the randomize button is used to enter random values for burst times
     public void drawRandomizeButton()
     {
         buttonRandom.setBounds(475, 40, 90, 30);
@@ -89,6 +103,7 @@ public class Processes extends JPanel
         
     }
     
+    // this combo box represents the process options
     public void drawComboBox()
     {
         comboLabel.setBounds(15, 15, 180, 20);
@@ -99,18 +114,23 @@ public class Processes extends JPanel
         processCombo.addActionListener(handler);
     }
     
+    // we want to set the global variable of number of processes
+    // with the specified number that the user asks for 
     public void setNumOfProcess(int numOfProcesses)
     {
         this.numOfProcesses = numOfProcesses;
         //System.out.println("In setNumOfProcess " + this.numOfProcesses);
     }
     
+    // returns the number of processes that user specified
     public int getNumOfProcess()
     {
         //System.out.println("In getNumOfProcesses " + numOfProcesses);
         return numOfProcesses;
     }
 
+    // the execute button is drawn onto the jpanel
+    // the execute button will run the simulation
     public void drawExecuteButton() 
     {
        buttonExecute.setBounds(705, 40, 90, 30);
@@ -119,6 +139,7 @@ public class Processes extends JPanel
        add(buttonExecute);
     }
 
+    // this function draws the drop down menu with the algorithms
     public void drawSchedulingAlgos() 
     {
         scheduleLabel.setBounds(240, 15, 210, 20);
@@ -129,18 +150,25 @@ public class Processes extends JPanel
         add(scheduleLabel);
     }
     
+    // setting the global variable algoSelected with the one the user selected
+    // or default
     public void setAlgoSelected(String algoSelected)
     {
         this.algoSelected = algoSelected;
     }
     
+    // returns the scheduling algorithm
     public String getAlgoSelected()
     {
         return algoSelected;
     }
  
+    // this function draws every label and process according to the
+    // number selected by the user
     public void drawTextAndLabels(int numOfProcesses)
     {
+        // we are positioning all the labels on the jpanel
+        // these labels represent the process #
         label1.setBounds(10, 90, 80, 20);
         label2.setBounds(10, 130, 80, 20);
         label3.setBounds(10, 170, 80, 20);
@@ -153,7 +181,8 @@ public class Processes extends JPanel
         label10.setBounds(10, 450, 80, 20);
         label11.setBounds(10, 490, 80, 20);
         
-        
+        // we are positioning all the text fields on the jpanel
+        // these text fields allow the user to enter burst time for each process
         text1.setBounds(90, 90, 40, 20);
         text2.setBounds(90, 130, 40, 20);
         text3.setBounds(90, 170, 40, 20);
@@ -190,8 +219,8 @@ public class Processes extends JPanel
         add(label10);
         add(label11);
         
-        
-        
+        // the following if statements will draw certain number of text fields
+        // and labels given the number of processes selected
         if(numOfProcesses == 1)
         {
             text1.setVisible(true);
@@ -529,6 +558,7 @@ public class Processes extends JPanel
             
             repaint();
         }
+        
         for(int z= 0; z < processNum; z++)
         {
             text[z].setVisible(true);
@@ -772,11 +802,11 @@ public class Processes extends JPanel
                 //burstValues = new Integer[] {pro1};
                 mapBurst.put(1, pro1);
                                       
-                    if(algo == "1. FCFS")
+                    if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -791,11 +821,11 @@ public class Processes extends JPanel
                    mapBurst.put(1, pro1);
                    mapBurst.put(2, pro2);
                                       
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -813,11 +843,11 @@ public class Processes extends JPanel
                    mapBurst.put(2, pro2);
                    mapBurst.put(3, pro3);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -837,11 +867,11 @@ public class Processes extends JPanel
                    mapBurst.put(3, pro3);
                    mapBurst.put(4, pro4);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -862,11 +892,11 @@ public class Processes extends JPanel
                    mapBurst.put(4, pro4);
                    mapBurst.put(5, pro5);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -888,11 +918,11 @@ public class Processes extends JPanel
                    mapBurst.put(5, pro5);
                    mapBurst.put(6, pro6);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -916,11 +946,11 @@ public class Processes extends JPanel
                    mapBurst.put(6, pro6);
                    mapBurst.put(7, pro7);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -946,11 +976,11 @@ public class Processes extends JPanel
                    mapBurst.put(7, pro7);
                    mapBurst.put(8, pro8);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -978,11 +1008,11 @@ public class Processes extends JPanel
                    mapBurst.put(8, pro8);
                    mapBurst.put(9, pro9);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -1012,11 +1042,11 @@ public class Processes extends JPanel
                    mapBurst.put(9, pro9);
                    mapBurst.put(10, pro10);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -1048,11 +1078,11 @@ public class Processes extends JPanel
                    mapBurst.put(10, pro10);
                    mapBurst.put(11, pro11);
                    
-                   if(algo == "1. FCFS")
+                   if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
-                    else if(algo == "2. SJF")
+                    else if(algo.equalsIgnoreCase("2. SJF"))
                     {
                         obj = new SJF(numberProcess, mapBurst);
                     }
@@ -1065,6 +1095,8 @@ public class Processes extends JPanel
             }
             else if(e.getSource() == buttonReset)
             {
+            processCombo.setSelectedIndex(0);    
+                
             text1.setVisible(false);
             text2.setVisible(false);
             text3.setVisible(false);
