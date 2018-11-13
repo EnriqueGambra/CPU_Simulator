@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -42,12 +43,16 @@ public class Processes extends JPanel
     private JLabel label10 = new JLabel("Process 10");
     private JLabel label11 = new JLabel("Process 11");
     
+    private JTextField[] text;
+    private JLabel[] labelGantt;
+    
     private JLabel comboLabel = new JLabel("Select number of Processes");
     private JLabel scheduleLabel = new JLabel("Select the algorithm you'd like to use");
     private JButton buttonReset = new JButton("Reset");
     private JButton buttonRandom = new JButton("Random");
     
-    private Calculate obj1;
+    private FCFS obj1;
+    private SJF obj;
     
     public Processes()
     {
@@ -60,6 +65,11 @@ public class Processes extends JPanel
         drawResetButton();
         drawRandomizeButton();
         repaint();
+    }
+    
+    public Processes(int numProcesses, HashMap<Integer,Integer>burstMap)
+    {
+        drawGanttChart(numProcesses, burstMap);
     }
     
     public void drawResetButton()
@@ -179,6 +189,8 @@ public class Processes extends JPanel
         add(label9);
         add(label10);
         add(label11);
+        
+        
         
         if(numOfProcesses == 1)
         {
@@ -493,6 +505,43 @@ public class Processes extends JPanel
         
     }
     
+    public void moreModular(int processNum)
+    {
+        int x = 90;
+        int y = 90;
+        int w = 40;
+        int h = 20;
+        
+        text = new JTextField[11];
+        for(int i = 0; i < text.length; i++)
+        {
+            text[i] = new JTextField("0");
+            if(i == 0)
+            {
+            text[i].setBounds(x, y, w, h);
+            }
+            else
+            {
+                text[i].setBounds(x, y + (40 * i), w, h);
+            }
+            add(text[i]);
+            text[i].setVisible(false);
+            
+            repaint();
+        }
+        for(int z= 0; z < processNum; z++)
+        {
+            text[z].setVisible(true);
+        }
+
+        for(int a = processNum - 1; a < text.length; a++)
+        {
+            text[a].setVisible(false);
+            System.out.println(a);    
+        }
+        repaint();    
+    }
+    
     public void setText1(int burstTime)
     {
         text1.setText(Integer.toString(burstTime));
@@ -641,6 +690,42 @@ public class Processes extends JPanel
         setText10((int) (Math.random() * 25) + 1);
         setText11((int) (Math.random() * 25) + 1);
     }
+    
+    public void drawGanttChart(int numProcesses, HashMap<Integer,Integer> burstMap)
+    {
+        labelGantt = new JLabel[11];
+        int x = 250;
+        int y = 250;
+        int w = 20;
+        int h = 20;
+        
+        Integer[] processBurst = new Integer[11];
+        
+        for(int i = 0; i < numProcesses; i++)
+        {
+            int s = burstMap.get(i + 1);
+            labelGantt[i] = new JLabel(Integer.toString(s));
+            if(i == 0)
+            {
+            labelGantt[i].setBounds(x, y, w, h);
+            }
+            
+            else
+            {
+                labelGantt[i].setBounds(x + (20*i), y, w, h);
+            }
+            
+            add(labelGantt[i]);
+            labelGantt[i].setVisible(true);
+        }
+        //System.out.println("Here");
+        repaint();
+    }
+    
+    protected void paintComponent(Graphics g, int numProcesses)
+    {
+        super.paintComponent(g);
+    }
 
     private class handleEvent implements ActionListener
     {
@@ -659,6 +744,7 @@ public class Processes extends JPanel
                 numOfProcesses =  (Integer) processCombo.getSelectedItem();
                 setNumOfProcess(numOfProcesses);
                 drawTextAndLabels(numOfProcesses);
+                //moreModular(numOfProcesses);
             }
             
             else if(e.getSource() == buttonExecute)
@@ -686,8 +772,15 @@ public class Processes extends JPanel
                 //burstValues = new Integer[] {pro1};
                 mapBurst.put(1, pro1);
                                       
-                obj1 = new Calculate(algo, numberProcess, mapBurst);
-                   
+                    if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
+               
                }
                else if(numberProcess == 2)
                {
@@ -698,7 +791,14 @@ public class Processes extends JPanel
                    mapBurst.put(1, pro1);
                    mapBurst.put(2, pro2);
                                       
-                obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                 
                }
                
@@ -712,7 +812,15 @@ public class Processes extends JPanel
                    mapBurst.put(1, pro1);
                    mapBurst.put(2, pro2);
                    mapBurst.put(3, pro3);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                    
                }
                
@@ -728,7 +836,15 @@ public class Processes extends JPanel
                    mapBurst.put(2, pro2);
                    mapBurst.put(3, pro3);
                    mapBurst.put(4, pro4);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                
                else if(numberProcess == 5)
@@ -745,7 +861,15 @@ public class Processes extends JPanel
                    mapBurst.put(3, pro3);
                    mapBurst.put(4, pro4);
                    mapBurst.put(5, pro5);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                else if(numberProcess == 6)
                {
@@ -763,7 +887,15 @@ public class Processes extends JPanel
                    mapBurst.put(4, pro4);
                    mapBurst.put(5, pro5);
                    mapBurst.put(6, pro6);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                else if(numberProcess == 7)
                {
@@ -783,7 +915,15 @@ public class Processes extends JPanel
                    mapBurst.put(5, pro5);
                    mapBurst.put(6, pro6);
                    mapBurst.put(7, pro7);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                else if(numberProcess == 8)
                {
@@ -805,7 +945,15 @@ public class Processes extends JPanel
                    mapBurst.put(6, pro6);
                    mapBurst.put(7, pro7);
                    mapBurst.put(8, pro8);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                else if(numberProcess == 9)
                {
@@ -829,7 +977,15 @@ public class Processes extends JPanel
                    mapBurst.put(7, pro7);
                    mapBurst.put(8, pro8);
                    mapBurst.put(9, pro9);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                else if(numberProcess == 10)
                {
@@ -855,7 +1011,15 @@ public class Processes extends JPanel
                    mapBurst.put(8, pro8);
                    mapBurst.put(9, pro9);
                    mapBurst.put(10, pro10);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }
                else if(numberProcess == 11)
                {
@@ -883,7 +1047,15 @@ public class Processes extends JPanel
                    mapBurst.put(9, pro9);
                    mapBurst.put(10, pro10);
                    mapBurst.put(11, pro11);
-                   obj1 = new Calculate(algo, numberProcess, mapBurst);
+                   
+                   if(algo == "1. FCFS")
+                    {
+                    obj1 = new FCFS(numberProcess, mapBurst);
+                    }
+                    else if(algo == "2. SJF")
+                    {
+                        obj = new SJF(numberProcess, mapBurst);
+                    }
                }  
             }
             else if(e.getSource() == algoCombo)
