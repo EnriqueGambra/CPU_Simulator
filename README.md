@@ -8,3 +8,7 @@
 4. User can have random values for each process burst time.
 
 5. There needs to be different values for burst time.
+
+6. All the processes arrive at the same time.
+
+7. This is Version 0.0.1

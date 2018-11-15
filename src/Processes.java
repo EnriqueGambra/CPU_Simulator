@@ -1150,7 +1150,8 @@ public class Processes extends JPanel//This class creates all the components for
                                 + "\n6. You can also click on the reset button and\n"
                                 + "program returns to its initial state.\n"
                                 + "\n7. Please don't choose 11 as your number of processes\n"
-                                + "or else the priority algo won't display priority boxes.", 
+                                + "or else the priority algo won't display priority boxes.\n"
+                                + "\n8. All the processes arrive at the same time.", 
                         "Instructions",
                         JOptionPane.INFORMATION_MESSAGE);
             }
