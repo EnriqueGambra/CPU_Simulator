@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-
-public class Priority //This class calculates everything for the Priority algorithm as well as outputs the results
+// This class calculates everything for the Priority algorithm as well as outputs
+// the results
+public class Priority 
 {
     private int processNumber;
     private int priorityNumber;
@@ -16,24 +17,30 @@ public class Priority //This class calculates everything for the Priority algori
         
     }
     
-    public Priority(int processNumber, int priorityNumber, int burstTime)//Properties needed for the priority algorithm
+    // Properties needed for the priority algorithm
+    public Priority(int processNumber, int priorityNumber, int burstTime)
     {
         this.processNumber = processNumber;
         this.priorityNumber = priorityNumber;
         this.burstTime = burstTime;
     }
 
-    public void correctOrder(Priority[] rightOrder) //Sets the order of processes in the order of Priority
+    //Sets the order of processes in the order of Priority
+    public void correctOrder(Priority[] rightOrder) 
     {
         Priority temp;
-         setOrder = new Priority[rightOrder.length];//Creates a priority array that will store the passed arrays values from the Process class
+        // Creates a priority array that will store the passed arrays values from
+        // the Process class
+        setOrder = new Priority[rightOrder.length];
         
-        for(int i = 0; i < rightOrder.length; i++)//The loop doing just that ^^^^
+        //The loop doing just that ^^^^
+        for(int i = 0; i < rightOrder.length; i++)
         {
             setOrder[i] = rightOrder[i];
         }
         
-        for(int i = 0; i < rightOrder.length; i++)//This loop will order the values for the setOrder array correctly
+        //This loop will order the values for the setOrder array correctly
+        for(int i = 0; i < rightOrder.length; i++)
         {
             for(int j = i+1; j < rightOrder.length; j++)
             {
@@ -46,7 +53,9 @@ public class Priority //This class calculates everything for the Priority algori
             }
             
         }
-        outputOrder();      //Once the order is correct and completed, it now outputs the correct order by calling the outputOrder method
+        // Once the order is correct and completed, it now outputs the correct 
+        // order by calling the outputOrder method
+        outputOrder();      
     }
 
     public int getPriorityNumber() 
@@ -54,7 +63,9 @@ public class Priority //This class calculates everything for the Priority algori
         return priorityNumber;
     }
 
-    public void outputOrder() //Just outputs the order as well as outputs the avg wait time and turnaround time
+    // Just outputs the order as well as outputs the avg wait time and turnaround
+    // time
+    public void outputOrder() 
     {
         int numProcesses = setOrder.length;
         
@@ -176,14 +187,19 @@ public class Priority //This class calculates everything for the Priority algori
         JOptionPane.showMessageDialog(null, "The average wait time is " + waitTime+ ". The average turnaround time is " + turnAroundTime);
     }
     
-    public double avgWaitTime()//Computes the average wait time
+    //Computes the average wait time
+    public double avgWaitTime()
     {
         int x = 0;
         double numProcess = setOrder.length;
         Integer[] totalWaitTime = new Integer[setOrder.length - 1];
-        for(int i = 0; i < setOrder.length - 1; i++)//This fills the array totalWaitTime by going through the corrected setOrder array and adding
-        {                                           //the previous value in each array index to the value in the current array index to get the total
-            if(i == 0)                              //wait time
+        
+        // This fills the array totalWaitTime by going through the corrected 
+        // setOrder array and adding the previous value in each array index to 
+        // the value in the current array index to get the total wait time
+        for(int i = 0; i < setOrder.length - 1; i++)
+        {                                           
+            if(i == 0)                              
             {
                 totalWaitTime[i] = setOrder[i].burstTime;
             }
@@ -194,8 +210,10 @@ public class Priority //This class calculates everything for the Priority algori
             }
         }
         
-        for(int i = 0; i < totalWaitTime.length; i++)//x then will be the actual value of the total wait time by going through the totalWaitTime array
-        {                                               //and adding each value
+        // x then will be the actual value of the total wait time by going 
+        // through the totalWaitTime array and adding each value
+        for(int i = 0; i < totalWaitTime.length; i++)
+        {                                               
             x = totalWaitTime[i] + x;
         }
         //System.out.println(x);
@@ -203,12 +221,15 @@ public class Priority //This class calculates everything for the Priority algori
         return xy/numProcess;//Passed back to call made in outputOrder() method
     }
     
-    public double avgTurnAroundTime()//Computes the average turnaround time... very similar to average wait time
+    //Computes the average turnaround time... very similar to average wait time
+    public double avgTurnAroundTime()
     {
         double numProcess = setOrder.length;
         Integer[] totalCompletionTime = new Integer[setOrder.length];
         int x = 0;
-        for(int i = 0; i < setOrder.length; i++)//totalCompletionTime[] gets all the burst times from the correct setOrder array
+        // totalCompletionTime[] gets all the burst times from the correct 
+        // setOrder array
+        for(int i = 0; i < setOrder.length; i++)
         {
             if(i == 0)
             {
@@ -220,9 +241,12 @@ public class Priority //This class calculates everything for the Priority algori
             }
         }
         
-        for(int i = 0; i < totalCompletionTime.length; i++)//Now x will go through each index of the totalCompletionTime array, get the total completion
-        {                                                   //time and will then be divided by the number of processes there were, giving us the 
-            x = totalCompletionTime[i] + x;                 //avg turnaround time
+        //Now x will go through each index of the totalCompletionTime array, 
+        // get the total completion time and will then be divided by the number
+        // of processes there were, giving us the avg turnaround time
+        for(int i = 0; i < totalCompletionTime.length; i++)
+        {                                                   
+            x = totalCompletionTime[i] + x;                 
         }
         double xY = (double) x;
         return xY/numProcess;

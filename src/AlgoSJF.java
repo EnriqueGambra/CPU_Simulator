@@ -2,14 +2,16 @@
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
-
-public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait time, order of processes, and turnaround time
+// Computes the SJF algorithm as well as outputs the wait time, 
+// order of processes, and turnaround time
+public class AlgoSJF 
 {
     private int burstTime;
     private int processNumber;
     private AlgoSJF[] setOrder;
     
     DecimalFormat fmt = new DecimalFormat("####################.##");
+    
     public AlgoSJF()
     {
         
@@ -21,8 +23,12 @@ public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait ti
         this.burstTime = burstTime;
     }
     
-    public void correctOrder(AlgoSJF[] notInOrder)//Very similar to correctOrder method in Priority except it doesnt compare and order based on priority
-                                                    //but by which process has the shortest burst value... see those notes in Priority
+    /*
+    Very similar to correctOrder method in Priority except it doesnt compare and
+    order based on priority but by which process has the shortest burst value...
+    see those notes in Priority
+    */
+    public void correctOrder(AlgoSJF[] notInOrder)             
     {
         AlgoSJF temp;
         setOrder = new AlgoSJF[notInOrder.length];
@@ -48,7 +54,8 @@ public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait ti
         outputOrder();   
     }
 
-    private void outputOrder() //same as correctOrder method in Priority... see those notes
+    //same as correctOrder method in Priority... see those notes
+    private void outputOrder() 
     {
         int numProcesses = setOrder.length;
         
@@ -171,8 +178,13 @@ public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait ti
                 + ".\nThe average turnaround time is " + fmt.format(turnAroundTime));
     }
 
-    private double avgWaitTime() //Same as avgWaitTime() in priority... we could have made an abstract class that would have had these methods and 
-    {                           //values and would have made the program more modular... maybe next time
+    /*
+    Same as avgWaitTime() in priority... we could have made an abstract class 
+    that would have had these methods and values and would have made the program
+    more modular... maybe next time
+    */
+    private double avgWaitTime()
+    {                           
         int x = 0;
         double numProcess = setOrder.length;
         Integer[] totalWaitTime = new Integer[setOrder.length - 1];
@@ -198,7 +210,8 @@ public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait ti
         return xy/numProcess;
     }
 
-    private double avgTurnAroundTime() //Same as avgTurnAroundTime() in priority... see notes
+    //Same as avgTurnAroundTime() in priority... see notes
+    private double avgTurnAroundTime() 
     {
         double numProcess = setOrder.length;
         Integer[] totalCompletionTime = new Integer[setOrder.length];

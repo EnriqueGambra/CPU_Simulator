@@ -1,7 +1,9 @@
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-class FCFS //This class is for the FCFS algorithm... all calculations for the FCFS including the output can be found here
+// This class is for the FCFS algorithm... all calculations for the FCFS 
+// including the output can be found here
+class FCFS 
 {
         int avgBurst;
         int avgTurnAround;
@@ -23,9 +25,14 @@ class FCFS //This class is for the FCFS algorithm... all calculations for the FC
             FCFS(burstMap, processNum);
     }
     
-    public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)//This method computes the FCFS algorithm by getting the values from the
-    {                                                                   //hashmap and then as well getting the number of processes and simply
-        if(processNum == 1)                                             //outputting the algo
+    /*
+    This method computes the FCFS algorithm by getting the values from the
+    hashmap and then as well getting the number of processes and simply
+    outputting the algo
+    */
+    public void FCFS(HashMap<Integer, Integer> burstMap, int processNum)
+    {                                                                   
+        if(processNum == 1)                                             
         {
             pro1 = burstMap.get(1);
             avgWait = 0;
@@ -272,16 +279,15 @@ class FCFS //This class is for the FCFS algorithm... all calculations for the FC
             
             
             JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
-        }
-        
-        
-            
+        }       
     }                                           
     
-   
-    
-    public int avgWaitTime(HashMap <Integer, Integer> burstMap, int processNum)//gets avgWaitTime by creating an array passed on by the getWaitTimes
-    {                                                                           //method and then finds the average
+    /*
+    gets avgWaitTime by creating an array passed on by the getWaitTimes
+    method and then finds the average
+    */
+    public int avgWaitTime(HashMap <Integer, Integer> burstMap, int processNum)
+    {                                                                           
         Integer[] avgWaitTime = getWaitTimes(burstMap, processNum);
         int wT = 0;
         
@@ -289,12 +295,15 @@ class FCFS //This class is for the FCFS algorithm... all calculations for the FC
         {
             wT = avgWaitTime[i] + wT;
         }
-        
         return wT/processNum;
     }
     
-    public Integer[] getWaitTimes(HashMap <Integer, Integer> burstMap, int processNum)//Gets the wait times for each process then sends it to the avg
-    {                                                                                   //wait time method
+    /*
+    Gets the wait times for each process then sends it to the avg
+    wait time method
+    */
+    public Integer[] getWaitTimes(HashMap <Integer, Integer> burstMap, int processNum)
+    {                                                                                   
         Integer[] waitTime = new Integer[processNum];
         
         for(int i = 0; i < waitTime.length; i++)
@@ -305,30 +314,35 @@ class FCFS //This class is for the FCFS algorithm... all calculations for the FC
             }
             else
             {
-                
-                   waitTime[i] = burstMap.get(i) + waitTime[i - 1]; 
-                
+                waitTime[i] = burstMap.get(i) + waitTime[i - 1];   
             }
         }
-        
         return waitTime;
     }
     
-    public int avgTurnAround(HashMap<Integer, Integer> burstMap, int processNum)//This calculates the average TurnAround time by getting the completion
-    {                                                                           //time for all processes first and then gets the average
+    /*
+    This calculates the average TurnAround time by getting the completion
+    time for all processes first and then gets the average
+    */
+    public int avgTurnAround(HashMap<Integer, Integer> burstMap, int processNum)
+    {                                                                           
         Integer[] avgTurnAroundTime = getCompletionTime(burstMap, processNum);
         int turnAround = 0;
         for(int i = 0; i < avgTurnAroundTime.length; i++)
         {
            turnAround = turnAround + avgTurnAroundTime[i];
         }
-        
         return turnAround/processNum;
     }
     
-    public Integer[] getCompletionTime(HashMap<Integer, Integer> burstMap, int processNum)//This method creates an array and has a loop that will end
-    {                                                                                   //getting all the completion times for each process and will send
-        Integer[] completionTime = new Integer[processNum];                             //the completion times to the avgTurnAround to be calculated
+    /*
+    This method creates an array and has a loop that will end
+    getting all the completion times for each process and will send
+    the completion times to the avgTurnAround to be calculated
+    */
+    public Integer[] getCompletionTime(HashMap<Integer, Integer> burstMap, int processNum)
+    {                                                                                   
+        Integer[] completionTime = new Integer[processNum];                             
         
         for(int i = 0; i < completionTime.length; i++)
         {
@@ -338,15 +352,10 @@ class FCFS //This class is for the FCFS algorithm... all calculations for the FC
             }
             else
             {
-               
-                    completionTime[i] = completionTime[i - 1] + burstMap.get(i + 1);
+                completionTime[i] = completionTime[i - 1] + burstMap.get(i + 1);
                 
             }
         }
-        
         return completionTime;
     }
-    
-   
-
 }

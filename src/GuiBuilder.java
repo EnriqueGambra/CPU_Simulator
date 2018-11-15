@@ -1,4 +1,4 @@
-import javax.swing.*;
+import javax.swing.JFrame;
 public class GuiBuilder extends JFrame 
 {
     // this creates the JFrame that will hold the components of the project
