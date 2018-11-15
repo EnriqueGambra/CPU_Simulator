@@ -1,4 +1,5 @@
 
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 
@@ -8,6 +9,7 @@ public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait ti
     private int processNumber;
     private AlgoSJF[] setOrder;
     
+    DecimalFormat fmt = new DecimalFormat("####################.##");
     public AlgoSJF()
     {
         
@@ -165,7 +167,8 @@ public class AlgoSJF //Computes the SJF algorithm as well as outputs the wait ti
         double turnAroundTime;
         waitTime = avgWaitTime();
         turnAroundTime = avgTurnAroundTime();
-        JOptionPane.showMessageDialog(null, "The average wait time is " + waitTime+ ". The average turnaround time is " + turnAroundTime);
+        JOptionPane.showMessageDialog(null, "The average wait time is " + fmt.format(waitTime) 
+                + ".\nThe average turnaround time is " + fmt.format(turnAroundTime));
     }
 
     private double avgWaitTime() //Same as avgWaitTime() in priority... we could have made an abstract class that would have had these methods and 
