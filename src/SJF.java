@@ -17,16 +17,20 @@ public class SJF
         int pro9;
         int pro10;
         int pro11;
-
+        int processNum;
+        
+        Integer[] processSorted;
+        Integer[] processSort;
         public SJF(int processNum, HashMap<Integer, Integer> burstMap)
         {
-            calcSJF(burstMap, processNum);
+            this.processNum = processNum;
+            calcSJF(burstMap, this.processNum);
         }
 
 
         public void calcSJF(HashMap<Integer, Integer> burstMap, int processNum)//This method computes the SJF algo by getting in a hashmap and then 
     {                                                                   //calling the sortHashMap method to sort the values in the correct form
-        Integer[] processSort;                                          //for the SJF algo
+                                                  //for the SJF algo
         processSort = sortHashMap(burstMap, processNum);
         HashMap <Integer, Integer> burstSorted = new HashMap<Integer, Integer>();
         
@@ -301,7 +305,7 @@ public class SJF
 
          public Integer[] sortHashMap(HashMap<Integer, Integer> burstMap, int processNum)//This method sorts the hashmap from shortest value to largest value
     {                                                                               //by creating an array that gets the values from the hashmap...
-        Integer[] processSorted = new Integer[processNum];                          //It then returns the sorted array
+        processSorted = new Integer[processNum];                                    //It then returns the sorted array
         int temp;
         for(int i = 0; i < burstMap.size(); i++)
         {
@@ -321,8 +325,6 @@ public class SJF
             }
             
         }
-        
-        
         return processSorted;
         
     }
@@ -393,17 +395,10 @@ public class SJF
             if(i == 0)
             {
                 waitTime[i] = processSort[i];
-                //System.out.println(processSort[i]);
             }
             else
             {
-               
-                
                    waitTime[i] = processSort[i] + waitTime[i - 1]; 
-                   
-                   //System.out.println(processSort[i]);
-                   //System.out.println(waitTime[i]);
-                
             }
         }
         return waitTime;
