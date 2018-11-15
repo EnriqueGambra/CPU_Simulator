@@ -78,6 +78,7 @@ public class Processes extends JPanel//This class creates all the components for
     private JButton buttonReset = new JButton("Reset");
     private JButton buttonRandom = new JButton("Random");
     private JButton buttonMoreInfo = new JButton("More Info");
+    private JButton buttonInstructions = new JButton("Instructions");
     
     private FCFS obj1;
     
@@ -100,29 +101,36 @@ public class Processes extends JPanel//This class creates all the components for
         drawSchedulingAlgos();
         drawResetButton();
         drawRandomizeButton();
-        drawMoreInfoButton();
+        //drawMoreInfoButton();
+        drawInstructionButton();
         repaint();
         
-        JOptionPane.showMessageDialog(null, "Welcome! Please press the more info button to get information about how this program works.");
-        
-        
+        JOptionPane.showMessageDialog(null, "Welcome! Please press the more info"
+                  + " button to get information about how this program works.");
+         
     }
-    
-    
-    
+
     public void drawMoreInfoButton()
     {
-        buttonMoreInfo.setBounds(740, 40, 90, 30);
+        buttonMoreInfo.setBounds(275, 410, 100, 30);
         handleEvent handler = new handleEvent();
         buttonMoreInfo.addActionListener(handler);
         add(buttonMoreInfo);
+    }
+    
+    public void drawInstructionButton()
+    {
+        buttonInstructions.setBounds(275, 350, 100, 30);
+        handleEvent handler = new handleEvent();
+        buttonInstructions.addActionListener(handler);
+        add(buttonInstructions);
     }
     
     // this function places the reset button on the jpanel
     // reset button causes simulation to return to its original state
     public void drawResetButton()
     {
-        buttonReset.setBounds(540, 40, 90, 30);
+        buttonReset.setBounds(275, 290, 100, 30);
         handleEvent handler = new handleEvent();
         buttonReset.addActionListener(handler);
         add(buttonReset);
@@ -132,11 +140,10 @@ public class Processes extends JPanel//This class creates all the components for
     // the randomize button is used to enter random values for burst times
     public void drawRandomizeButton()
     {
-        buttonRandom.setBounds(440, 40, 90, 30);
+        buttonRandom.setBounds(275, 170, 100, 30);
         handleEvent handler = new handleEvent();
         buttonRandom.addActionListener(handler);
-        add(buttonRandom);
-        
+        add(buttonRandom);   
     }
     
     // this combo box represents the process options
@@ -169,7 +176,7 @@ public class Processes extends JPanel//This class creates all the components for
     // the execute button will run the simulation
     public void drawExecuteButton() 
     {
-       buttonExecute.setBounds(640, 40, 90, 30);
+       buttonExecute.setBounds(275, 230, 100, 30);
        handleEvent handler = new handleEvent();
        buttonExecute.addActionListener(handler);
        add(buttonExecute);
@@ -179,7 +186,7 @@ public class Processes extends JPanel//This class creates all the components for
     public void drawSchedulingAlgos() 
     {
         scheduleLabel.setBounds(220, 15, 330, 20);
-        algoCombo.setBounds(270, 40, 120, 30);
+        algoCombo.setBounds(250, 40, 160, 30);
         handleEvent handler = new handleEvent();
         algoCombo.addActionListener(handler);
         add(algoCombo);
@@ -729,7 +736,7 @@ public class Processes extends JPanel//This class creates all the components for
             textP6.setVisible(true);
             textP7.setVisible(true);
             textP8.setVisible(true);
-            textP9.setVisible(true);
+            textP9.setVisible(false);
             textP10.setVisible(false);
             textP11.setVisible(false);
         }
@@ -1119,24 +1126,45 @@ public class Processes extends JPanel//This class creates all the components for
                 setNumOfProcess(numOfProcesses);
                 drawTextAndLabels(numOfProcesses);
                 String algo = getAlgoSelected();
-                if(algo == "3. Priority")//If the algo selected is priority it draws the priority boxes needed for the priority algorithm
+                if(algo.equalsIgnoreCase("3. Priority"))//If the algo selected is priority it draws the priority boxes needed for the priority algorithm
                 {
                     drawPriority(numOfProcesses);
                 }
                 //moreModular(numOfProcesses);
             }
-            
+            else if(e.getSource() == buttonInstructions)
+            {
+                JOptionPane.showMessageDialog(null,
+                        "1. First select number of processes you desire (1-11)\n"
+                                + "from the drop down menu on the far left.\n"
+                                + "\n2. Select algorithm you would like to use.\n"
+                                + "\n3. If you want to place random values for each process,\n"
+                                + "make sure the # of processes is selected and the choice of\n"
+                                + "algorithm, then you can click the random button.\n"
+                                + "\n4. Once steps 1-3 are completed, you can click on the\n"
+                                + "execute button.\n"
+                                + "\n5. If you choose priority as your scheduling algorithm,\n"
+                                + "the random button does not place values in for the\n"
+                                + "priorities. Values must be entered in manually for priority\n"
+                                + "scheduling algorithm.\n"
+                                + "\n6. You can also click on the reset button and\n"
+                                + "program returns to its initial state.\n"
+                                + "\n7. Please don't choose 11 as your number of processes\n"
+                                + "or else the priority algo won't display priority boxes.", 
+                        "Instructions",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
             else if(e.getSource() == buttonMoreInfo)//If the more Info button is selected
             {
-                JOptionPane.showMessageDialog(null, "Welcome! This program assumes all processes arrived \nat the same. You can choose "
-                                            + " the number of processes \nyou want from the process combo box on the left. Please \nmake "
-                                            + " sure you choose an algorithm from the algorithm \nbox on the left.","More Information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Welcome!\nThis program assumes all processes arrived at the same time.\nYou can choose"
+                                            + " the number of processes you want from the \nprocess combo box on the left. \nPlease make"
+                                            + " sure you choose an algorithm from the \nalgorithm drop down menu on the left.","More Information", JOptionPane.INFORMATION_MESSAGE);
                 
                 
                 JOptionPane.showMessageDialog(null, "The blank textfields that appear next to the process numbers \nare the areas where "
-                                                + "if you'd like to enter manual burst times, \nyou can in there. Also when choosing"
-                                                + " the priority algorithm, \nplease ensure you are using different priority values. The lower"
-                                                + " \nthe value of the priority (e.g. 1) the higher priority it has. Enjoy!"
+                                                + "if you'd like to enter manual burst times, \nyou can in there. \nAlso when choosing"
+                                                + " the priority algorithm, \nplease ensure you are using different priority values.\nThe lower"
+                                                + " the value of the priority,\n(e.g. 1) the higher priority it has.\nEnjoy!"
                                                 , "More Information Part 2" , JOptionPane.INFORMATION_MESSAGE);
                 
             }
@@ -1731,7 +1759,7 @@ public class Processes extends JPanel//This class creates all the components for
                    mapBurst.put(10, pro10);
                    mapBurst.put(11, pro11);
                    
-                   if(algo.equalsIgnoreCase("1. FCFS"))
+                    if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
@@ -1756,11 +1784,11 @@ public class Processes extends JPanel//This class creates all the components for
                     }
                     else if(algo.equalsIgnoreCase("Please Choose"))
                     {
-                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                        JOptionPane.showMessageDialog(null, "Please choose an algorithm!");
                     }
-                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    else if(algo.equalsIgnoreCase("3. Priority"))
                     {
-                         object = new Priority[numberProcess];
+                        object = new Priority[numberProcess];
                         
                         object[0] = new Priority(1, p1, pro1);
                         object[1] = new Priority(2, p2, pro2);
@@ -1796,7 +1824,8 @@ public class Processes extends JPanel//This class creates all the components for
             else if(e.getSource() == buttonReset)//Resets every textfield to 0 as well as makes them not visible as well as the labels for each process
             {
             processCombo.setSelectedIndex(0);    
-                
+            algoCombo.setSelectedIndex(0);
+            
             text1.setVisible(false);
             text2.setVisible(false);
             text3.setVisible(false);
