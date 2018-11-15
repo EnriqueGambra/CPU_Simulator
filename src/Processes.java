@@ -78,6 +78,7 @@ public class Processes extends JPanel//This class creates all the components for
     private JButton buttonReset = new JButton("Reset");
     private JButton buttonRandom = new JButton("Random");
     private JButton buttonMoreInfo = new JButton("More Info");
+    private JButton buttonInstructions = new JButton("Instructions");
     
     private FCFS obj1;
     
@@ -101,6 +102,7 @@ public class Processes extends JPanel//This class creates all the components for
         drawResetButton();
         drawRandomizeButton();
         drawMoreInfoButton();
+        drawInstructionButton();
         repaint();
         
         JOptionPane.showMessageDialog(null, "Welcome! Please press the more info"
@@ -110,17 +112,25 @@ public class Processes extends JPanel//This class creates all the components for
 
     public void drawMoreInfoButton()
     {
-        buttonMoreInfo.setBounds(280, 350, 90, 30);
+        buttonMoreInfo.setBounds(275, 410, 100, 30);
         handleEvent handler = new handleEvent();
         buttonMoreInfo.addActionListener(handler);
         add(buttonMoreInfo);
+    }
+    
+    public void drawInstructionButton()
+    {
+        buttonInstructions.setBounds(275, 350, 100, 30);
+        handleEvent handler = new handleEvent();
+        buttonInstructions.addActionListener(handler);
+        add(buttonInstructions);
     }
     
     // this function places the reset button on the jpanel
     // reset button causes simulation to return to its original state
     public void drawResetButton()
     {
-        buttonReset.setBounds(280, 290, 90, 30);
+        buttonReset.setBounds(275, 290, 100, 30);
         handleEvent handler = new handleEvent();
         buttonReset.addActionListener(handler);
         add(buttonReset);
@@ -130,7 +140,7 @@ public class Processes extends JPanel//This class creates all the components for
     // the randomize button is used to enter random values for burst times
     public void drawRandomizeButton()
     {
-        buttonRandom.setBounds(280, 170, 90, 30);
+        buttonRandom.setBounds(275, 170, 100, 30);
         handleEvent handler = new handleEvent();
         buttonRandom.addActionListener(handler);
         add(buttonRandom);   
@@ -166,7 +176,7 @@ public class Processes extends JPanel//This class creates all the components for
     // the execute button will run the simulation
     public void drawExecuteButton() 
     {
-       buttonExecute.setBounds(280, 230, 90, 30);
+       buttonExecute.setBounds(275, 230, 100, 30);
        handleEvent handler = new handleEvent();
        buttonExecute.addActionListener(handler);
        add(buttonExecute);
@@ -1122,7 +1132,26 @@ public class Processes extends JPanel//This class creates all the components for
                 }
                 //moreModular(numOfProcesses);
             }
-            
+            else if(e.getSource() == buttonInstructions)
+            {
+                JOptionPane.showMessageDialog(null,
+                        "1. First select number of processes you desire (1-11)\n"
+                                + "from the drop down menu on the far left.\n"
+                                + "\n2. Select algorithm you would like to use.\n"
+                                + "\n3. If you want to place random values for each process,\n"
+                                + "make sure the # of processes is selected and the choice of\n"
+                                + "algorithm, then you can click the random button.\n"
+                                + "\n4. Once steps 1-3 are completed, you can click on the\n"
+                                + "execute button.\n"
+                                + "\n5. If you choose priority as your scheduling algorithm,\n"
+                                + "the random button does not place values in for the\n"
+                                + "priorities. Values must be entered in manually for priority\n"
+                                + "scheduling algorithm.\n"
+                                + "\n6. You can also click on the reset button and\n"
+                                + "program returns to its initial state.", 
+                        "Instructions",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
             else if(e.getSource() == buttonMoreInfo)//If the more Info button is selected
             {
                 JOptionPane.showMessageDialog(null, "Welcome!\nThis program assumes all processes arrived at the same time.\nYou can choose"
