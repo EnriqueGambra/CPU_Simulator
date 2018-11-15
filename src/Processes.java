@@ -94,6 +94,7 @@ public class Processes extends JPanel//This class creates all the components for
         setLayout(null);
         setBounds(0, 0, 900, 600);
         
+        
         drawComboBox();
         drawExecuteButton();
         drawSchedulingAlgos();
@@ -1134,7 +1135,8 @@ public class Processes extends JPanel//This class creates all the components for
                 
                 JOptionPane.showMessageDialog(null, "The blank textfields that appear next to the process numbers \nare the areas where "
                                                 + "if you'd like to enter manual burst times, \nyou can in there. Also when choosing"
-                                                + " the priority algorithm, \nplease ensure you are using different priority values. Enjoy!"
+                                                + " the priority algorithm, \nplease ensure you are using different priority values. The lower"
+                                                + " \nthe value of the priority (e.g. 1) the higher priority it has. Enjoy!"
                                                 , "More Information Part 2" , JOptionPane.INFORMATION_MESSAGE);
                 
             }
