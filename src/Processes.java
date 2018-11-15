@@ -101,7 +101,7 @@ public class Processes extends JPanel//This class creates all the components for
         drawSchedulingAlgos();
         drawResetButton();
         drawRandomizeButton();
-        drawMoreInfoButton();
+        //drawMoreInfoButton();
         drawInstructionButton();
         repaint();
         
@@ -736,7 +736,7 @@ public class Processes extends JPanel//This class creates all the components for
             textP6.setVisible(true);
             textP7.setVisible(true);
             textP8.setVisible(true);
-            textP9.setVisible(true);
+            textP9.setVisible(false);
             textP10.setVisible(false);
             textP11.setVisible(false);
         }
@@ -1126,7 +1126,7 @@ public class Processes extends JPanel//This class creates all the components for
                 setNumOfProcess(numOfProcesses);
                 drawTextAndLabels(numOfProcesses);
                 String algo = getAlgoSelected();
-                if(algo == "3. Priority")//If the algo selected is priority it draws the priority boxes needed for the priority algorithm
+                if(algo.equalsIgnoreCase("3. Priority"))//If the algo selected is priority it draws the priority boxes needed for the priority algorithm
                 {
                     drawPriority(numOfProcesses);
                 }
@@ -1148,7 +1148,9 @@ public class Processes extends JPanel//This class creates all the components for
                                 + "priorities. Values must be entered in manually for priority\n"
                                 + "scheduling algorithm.\n"
                                 + "\n6. You can also click on the reset button and\n"
-                                + "program returns to its initial state.", 
+                                + "program returns to its initial state.\n"
+                                + "\n7. Please don't choose 11 as your number of processes\n"
+                                + "or else the priority algo won't display priority boxes.", 
                         "Instructions",
                         JOptionPane.INFORMATION_MESSAGE);
             }
@@ -1757,7 +1759,7 @@ public class Processes extends JPanel//This class creates all the components for
                    mapBurst.put(10, pro10);
                    mapBurst.put(11, pro11);
                    
-                   if(algo.equalsIgnoreCase("1. FCFS"))
+                    if(algo.equalsIgnoreCase("1. FCFS"))
                     {
                     obj1 = new FCFS(numberProcess, mapBurst);
                     }
@@ -1782,11 +1784,11 @@ public class Processes extends JPanel//This class creates all the components for
                     }
                     else if(algo.equalsIgnoreCase("Please Choose"))
                     {
-                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                        JOptionPane.showMessageDialog(null, "Please choose an algorithm!");
                     }
-                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    else if(algo.equalsIgnoreCase("3. Priority"))
                     {
-                         object = new Priority[numberProcess];
+                        object = new Priority[numberProcess];
                         
                         object[0] = new Priority(1, p1, pro1);
                         object[1] = new Priority(2, p2, pro2);
