@@ -1,17 +1,18 @@
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.*;
 import java.util.Random;
 
-public class Processes extends JPanel
+public class Processes extends JPanel//This class creates all the components for the GUI
 {
     // Creating global variables related to the components in this class
     
     // the drop down menu for choosing algorithms
-    private String[] schedulingAlgo = {"1. FCFS", "2. SJF"};
+    private String[] schedulingAlgo = {"Please Choose", "1. FCFS", "2. SJF", "3. Priority"};
     private JComboBox algoCombo = new JComboBox(schedulingAlgo);
     private String algoSelected = "1. FCFS";
     
@@ -24,6 +25,7 @@ public class Processes extends JPanel
     
     private int[] burstValues; // an array holding burst values for each process
     private HashMap<Integer, Integer> mapBurst = new HashMap<Integer, Integer>();
+    private HashMap<Integer, Integer[]> priorityBurst = new HashMap <Integer, Integer[]>();
     
     // text fields to appear based on the number of processes selected
     private JTextField text1 = new JTextField("0");
@@ -51,8 +53,23 @@ public class Processes extends JPanel
     private JLabel label10 = new JLabel("Process 10");
     private JLabel label11 = new JLabel("Process 11");
     
+    private JTextField textP1 = new JTextField("0");
+    private JTextField textP2 = new JTextField("0");
+    private JTextField textP3 = new JTextField("0");
+    private JTextField textP4 = new JTextField("0");
+    private JTextField textP5 = new JTextField("0");
+    private JTextField textP6 = new JTextField("0");
+    private JTextField textP7 = new JTextField("0");
+    private JTextField textP8 = new JTextField("0");
+    private JTextField textP9 = new JTextField("0");
+    private JTextField textP10 = new JTextField("0");
+    private JTextField textP11 = new JTextField("0");
+    
+    private JLabel labelPriority = new JLabel("Set Priorities");
+    
     private JTextField[] text;
     private JLabel[] label;
+    private JTextField[] textP;
             
     private JLabel[] labelGantt;
     
@@ -60,11 +77,18 @@ public class Processes extends JPanel
     private JLabel scheduleLabel = new JLabel("Select the algorithm you'd like to use");
     private JButton buttonReset = new JButton("Reset");
     private JButton buttonRandom = new JButton("Random");
+    private JButton buttonMoreInfo = new JButton("More Info");
     
     private FCFS obj1;
-    private SJF obj;
     
-    public Processes()
+    private Priority[] object;
+    private Priority priorityArray = new Priority();
+   
+    
+    private AlgoSJF[] ObjectSJFArray;
+    private AlgoSJF ObjectSJF = new AlgoSJF();
+    
+    public Processes()//Calls methods to draw components
     {
         super();
         setLayout(null);
@@ -75,20 +99,29 @@ public class Processes extends JPanel
         drawSchedulingAlgos();
         drawResetButton();
         drawRandomizeButton();
-        
+        drawMoreInfoButton();
         repaint();
+        
+        JOptionPane.showMessageDialog(null, "Welcome! Please press the more info button to get information about how this program works.");
+        
+        
     }
     
-    public Processes(int numProcesses, HashMap<Integer,Integer>burstMap)
+    
+    
+    public void drawMoreInfoButton()
     {
-        drawGanttChart(numProcesses, burstMap);
+        buttonMoreInfo.setBounds(740, 40, 90, 30);
+        handleEvent handler = new handleEvent();
+        buttonMoreInfo.addActionListener(handler);
+        add(buttonMoreInfo);
     }
     
     // this function places the reset button on the jpanel
     // reset button causes simulation to return to its original state
     public void drawResetButton()
     {
-        buttonReset.setBounds(590, 40, 90, 30);
+        buttonReset.setBounds(540, 40, 90, 30);
         handleEvent handler = new handleEvent();
         buttonReset.addActionListener(handler);
         add(buttonReset);
@@ -98,7 +131,7 @@ public class Processes extends JPanel
     // the randomize button is used to enter random values for burst times
     public void drawRandomizeButton()
     {
-        buttonRandom.setBounds(475, 40, 90, 30);
+        buttonRandom.setBounds(440, 40, 90, 30);
         handleEvent handler = new handleEvent();
         buttonRandom.addActionListener(handler);
         add(buttonRandom);
@@ -135,7 +168,7 @@ public class Processes extends JPanel
     // the execute button will run the simulation
     public void drawExecuteButton() 
     {
-       buttonExecute.setBounds(705, 40, 90, 30);
+       buttonExecute.setBounds(640, 40, 90, 30);
        handleEvent handler = new handleEvent();
        buttonExecute.addActionListener(handler);
        add(buttonExecute);
@@ -144,8 +177,8 @@ public class Processes extends JPanel
     // this function draws the drop down menu with the algorithms
     public void drawSchedulingAlgos() 
     {
-        scheduleLabel.setBounds(220, 15, 250, 20);
-        algoCombo.setBounds(270, 40, 100, 30);
+        scheduleLabel.setBounds(220, 15, 330, 20);
+        algoCombo.setBounds(270, 40, 120, 30);
         handleEvent handler = new handleEvent();
         algoCombo.addActionListener(handler);
         add(algoCombo);
@@ -535,9 +568,216 @@ public class Processes extends JPanel
         }
         
     }
-    
-    public void moreModular(int processNum)
+     
+    public void erasePriority()
     {
+            textP1.setVisible(false);
+            textP2.setVisible(false);
+            textP3.setVisible(false);
+            textP4.setVisible(false);
+            textP5.setVisible(false);
+            textP6.setVisible(false);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+            
+            labelPriority.setVisible(false);
+    }
+    
+    public void drawPriority(int processNum)//Draws the textfields and label neccessary for the Priority algorithm
+    {
+        textP1.setBounds(170, 90, 40, 20);
+        textP2.setBounds(170, 130, 40, 20);
+        textP3.setBounds(170, 170, 40, 20);
+        textP4.setBounds(170, 210, 40, 20);
+        textP5.setBounds(170, 250, 40, 20);
+        textP6.setBounds(170, 290, 40, 20);
+        textP7.setBounds(170, 330, 40, 20);
+        textP8.setBounds(170, 370, 40, 20);
+        textP9.setBounds(170, 410, 40, 20);
+        textP10.setBounds(170, 450, 40, 20);
+        textP11.setBounds(170, 490, 40, 20);
+        
+        labelPriority.setBounds(170, 70, 80, 20);
+        
+        add(textP1);
+        add(textP2);
+        add(textP3);
+        add(textP4);
+        add(textP5);
+        add(textP6);
+        add(textP7);
+        add(textP8);
+        add(textP9);
+        add(textP10);
+        add(textP11);
+        add(labelPriority);
+        
+        labelPriority.setVisible(true);
+        
+        if(processNum == 1)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(false);
+            textP3.setVisible(false);
+            textP4.setVisible(false);
+            textP5.setVisible(false);
+            textP6.setVisible(false);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        
+        else if(processNum == 2)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(false);
+            textP4.setVisible(false);
+            textP5.setVisible(false);
+            textP6.setVisible(false);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        
+        else if(processNum == 3)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(false);
+            textP5.setVisible(false);
+            textP6.setVisible(false);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        
+        else if(processNum == 4)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(false);
+            textP6.setVisible(false);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        else if(processNum == 5)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(false);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        else if(processNum == 6)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(true);
+            textP7.setVisible(false);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        else if(processNum == 7)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(true);
+            textP7.setVisible(true);
+            textP8.setVisible(false);
+            textP9.setVisible(false);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        else if(processNum == 8)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(true);
+            textP7.setVisible(true);
+            textP8.setVisible(true);
+            textP9.setVisible(true);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+        else if(processNum == 9)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(true);
+            textP7.setVisible(true);
+            textP8.setVisible(true);
+            textP9.setVisible(true);
+            textP10.setVisible(false);
+            textP11.setVisible(false);
+        }
+         else if(processNum == 10)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(true);
+            textP7.setVisible(true);
+            textP8.setVisible(true);
+            textP9.setVisible(true);
+            textP10.setVisible(true);
+            textP11.setVisible(false);
+        }
+        else if(processNum == 11)
+        {
+            textP1.setVisible(true);
+            textP2.setVisible(true);
+            textP3.setVisible(true);
+            textP4.setVisible(true);
+            textP5.setVisible(true);
+            textP6.setVisible(true);
+            textP7.setVisible(true);
+            textP8.setVisible(true);
+            textP9.setVisible(true);
+            textP10.setVisible(true);
+            textP11.setVisible(true);
+        }
+    }
+    
+    /*public void moreModular(int processNum)   Method in which we tried to draw all the textfields and labels shown on the GUI in an array...
+    {                                           Would have made the program much more modular however the repaint(); method was not cooperating
         int x = 90;
         int y = 90;
         int w = 40;
@@ -596,6 +836,73 @@ public class Processes extends JPanel
             System.out.println(a);    
         }
         repaint();    
+    }*/
+    
+    //These methods get the text values from either the Priority text values or burst text values and also sets them if the random button was pushed
+    public int getTextP1()
+    {
+        int x = Integer.parseInt(textP1.getText());
+        return x;
+    }
+    
+    public int getTextP2()
+    {
+        int x = Integer.parseInt(textP2.getText());
+        return x;
+    }
+    
+    public int getTextP3()
+    {
+        int x = Integer.parseInt(textP3.getText());
+        return x;
+    }
+    
+    public int getTextP4()
+    {
+        int x = Integer.parseInt(textP4.getText());
+        return x;
+    }
+    
+    public int getTextP5()
+    {
+        int x = Integer.parseInt(textP5.getText());
+        return x;
+    }
+    
+    public int getTextP6()
+    {
+        int x = Integer.parseInt(textP6.getText());
+        return x;
+    }
+    
+    public int getTextP7()
+    {
+        int x = Integer.parseInt(textP7.getText());
+        return x;
+    }
+    
+    public int getTextP8()
+    {
+        int x = Integer.parseInt(textP8.getText());
+        return x;
+    }
+    
+    public int getTextP9()
+    {
+        int x = Integer.parseInt(textP9.getText());
+        return x;
+    }
+    
+    public int getTextP10()
+    {
+        int x = Integer.parseInt(textP10.getText());
+        return x;
+    }
+    
+    public int getTextP11()
+    {
+        int x = Integer.parseInt(textP11.getText());
+        return x;
     }
     
     public void setText1(int burstTime)
@@ -730,17 +1037,18 @@ public class Processes extends JPanel
         return x;
     }
     
+    //For when the random button is pushed, sets the text of the burst times to random times
     public void randomizerButton()
     {
         int numOfProcesses = getNumOfProcess();
         int random;
         
-        for(int i = 0; i < numOfProcesses; i++){
+        /*for(int i = 0; i < numOfProcesses; i++){
             random = (int)(Math.random() * 25) + 1;
             text[i].setText(Integer.toString(random));
-        }
+        }*/
           
-        /*setText1((int) (Math.random() * 25) + 1);
+        setText1((int) (Math.random() * 25) + 1);
         setText2((int) (Math.random() * 25) + 1);
         setText3((int) (Math.random() * 25) + 1);
         setText4((int) (Math.random() * 25) + 1);
@@ -750,10 +1058,10 @@ public class Processes extends JPanel
         setText8((int) (Math.random() * 25) + 1);
         setText9((int) (Math.random() * 25) + 1);
         setText10((int) (Math.random() * 25) + 1);
-        setText11((int) (Math.random() * 25) + 1);*/
+        setText11((int) (Math.random() * 25) + 1);
     }
     
-    public void drawGanttChart(int numProcesses, HashMap<Integer,Integer> burstMap)
+    /*public void drawGanttChart(int numProcesses, HashMap<Integer,Integer> burstMap)
     {
         labelGantt = new JLabel[11];
         int x = 250;
@@ -787,7 +1095,7 @@ public class Processes extends JPanel
     protected void paintComponent(Graphics g, int numProcesses)
     {
         super.paintComponent(g);
-    }
+    }*/
 
     private class handleEvent implements ActionListener
     {
@@ -798,18 +1106,40 @@ public class Processes extends JPanel
         }
 
         @Override
-        public void actionPerformed(ActionEvent e) 
-        {
+        public void actionPerformed(ActionEvent e) //When a button is pushed it gets the source of which button was pushed and executes commands based
+        {                                           //on which button was pushed
             Integer[] burstValues;
-            if(e.getSource() == processCombo)
+            
+            HashMap<Integer, Integer[]> priorityEntry = new HashMap<Integer, Integer[]>();
+            
+            if(e.getSource() == processCombo)//If the algo combo box was changed
             {
                 numOfProcesses =  (Integer) processCombo.getSelectedItem();
                 setNumOfProcess(numOfProcesses);
-                //drawTextAndLabels(numOfProcesses);
-                moreModular(numOfProcesses);
+                drawTextAndLabels(numOfProcesses);
+                String algo = getAlgoSelected();
+                if(algo == "3. Priority")//If the algo selected is priority it draws the priority boxes needed for the priority algorithm
+                {
+                    drawPriority(numOfProcesses);
+                }
+                //moreModular(numOfProcesses);
             }
             
-            else if(e.getSource() == buttonExecute)
+            else if(e.getSource() == buttonMoreInfo)//If the more Info button is selected
+            {
+                JOptionPane.showMessageDialog(null, "Welcome! This program assumes all processes arrived \nat the same. You can choose "
+                                            + " the number of processes \nyou want from the process combo box on the left. Please \nmake "
+                                            + " sure you choose an algorithm from the algorithm \nbox on the left.","More Information", JOptionPane.INFORMATION_MESSAGE);
+                
+                
+                JOptionPane.showMessageDialog(null, "The blank textfields that appear next to the process numbers \nare the areas where "
+                                                + "if you'd like to enter manual burst times, \nyou can in there. Also when choosing"
+                                                + " the priority algorithm, \nplease ensure you are using different priority values. Enjoy!"
+                                                , "More Information Part 2" , JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+            else if(e.getSource() == buttonExecute)//If the button execute is selected
             {
                 int pro1 = 0;
                 int pro2 = 0;
@@ -823,24 +1153,68 @@ public class Processes extends JPanel
                 int pro10 = 0;
                 int pro11 = 0;
                 
+                int p1 = 0;
+                int p2 = 0;
+                int p3 = 0;
+                int p4 = 0;
+                int p5 = 0;
+                int p6 = 0;
+                int p7 = 0;
+                int p8 = 0;
+                int p9 = 0;
+                int p10 = 0;
+                int p11 = 0;
+                
+                p1 = getTextP1();
+                p2 = getTextP2();
+                p3 = getTextP3();
+                p4 = getTextP4();
+                p5 = getTextP5();
+                p6 = getTextP6();
+                p7 = getTextP7();
+                p8 = getTextP8();
+                p9 = getTextP9();
+                p10 = getTextP10();
+                p11 = getTextP11();
+                
                int numberProcess = getNumOfProcess();
                String algo = getAlgoSelected();
-               
+               ArrayList<Integer> priority = new ArrayList<Integer>();
                //Add object for new data and calculating class here
                
-               if(numberProcess == 1)
-               {
-                pro1 = getText1();
+               if(numberProcess == 1)//Depending on the number of processes selected we get those values from those textfields... It also determines
+               {                        //how big the hashmap is made as well as the specific object arrays for the AlgoSJF class as well as the
+                pro1 = getText1();      //Priority class
                 //burstValues = new Integer[] {pro1};
                 mapBurst.put(1, pro1);
                                       
                     if(algo.equalsIgnoreCase("1. FCFS"))
                     {
-                    obj1 = new FCFS(numberProcess, mapBurst);
+                    obj1 = new FCFS(numberProcess, mapBurst);//Creates a new object for the FCFS class and sends it the number of processes as well
+                    }                                       //as the hashmap mapBurst which has the process number and the burst value... Same for
+                                                             //everytime FCFS is executed in this method
+                    
+                    else if(algo.equalsIgnoreCase("2. SJF"))//Creates an AlgoSJF object, puts it in an array, and operates on the correctOrder
+                    {                                       //method of the AlgoSJF class. This is the same for everytime SJF is executed
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
                     }
-                    else if(algo.equalsIgnoreCase("2. SJF"))
+                    else if(algo.equalsIgnoreCase("Please Choose"))//If Please Choose is shown, messagebox will appear saying Please Choose an Algo
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                    else if(algo.equalsIgnoreCase("3. Priority"))//Very Similar to SJF portion... creates an Priority object, put in an array, and
+                    {                                              //operates on correctOrder method of the Priority class... Same for everytime Priority
+                                                                    //is chosen
+                      object = new Priority[numberProcess];     
+                      
+                      object[0] = new Priority(1, p1, pro1);
+                      
+                      priorityArray.correctOrder(object);
                     }
                
                }
@@ -859,7 +1233,26 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                        //obj = new SJF(numberProcess, mapBurst);
+                    }
+                     else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        
+                        priorityArray.correctOrder(object);
                     }
                 
                }
@@ -881,7 +1274,28 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        
+                        priorityArray.correctOrder(object);
                     }
                    
                }
@@ -905,7 +1319,31 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                         
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                
@@ -930,7 +1368,33 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                else if(numberProcess == 6)
@@ -956,7 +1420,34 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        ObjectSJFArray[5] = new AlgoSJF(6, pro6);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        object[5] = new Priority(6, p6, pro6);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                else if(numberProcess == 7)
@@ -984,7 +1475,36 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        ObjectSJFArray[5] = new AlgoSJF(6, pro6);
+                        ObjectSJFArray[6] = new AlgoSJF(7, pro7);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        object[5] = new Priority(6, p6, pro6);
+                        object[6] = new Priority(7, p7, pro7);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                else if(numberProcess == 8)
@@ -1014,7 +1534,38 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        ObjectSJFArray[5] = new AlgoSJF(6, pro6);
+                        ObjectSJFArray[6] = new AlgoSJF(7, pro7);
+                        ObjectSJFArray[7] = new AlgoSJF(8, pro8);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        object[5] = new Priority(6, p6, pro6);
+                        object[6] = new Priority(7, p7, pro7);
+                        object[7] = new Priority(8, p8, pro8);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                else if(numberProcess == 9)
@@ -1046,7 +1597,40 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        ObjectSJFArray[5] = new AlgoSJF(6, pro6);
+                        ObjectSJFArray[6] = new AlgoSJF(7, pro7);
+                        ObjectSJFArray[7] = new AlgoSJF(8, pro8);
+                        ObjectSJFArray[8] = new AlgoSJF(9, pro9);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        object[5] = new Priority(6, p6, pro6);
+                        object[6] = new Priority(7, p7, pro7);
+                        object[7] = new Priority(8, p8, pro8);
+                        object[8] = new Priority(9, p9, pro9);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                else if(numberProcess == 10)
@@ -1080,7 +1664,42 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        ObjectSJFArray[5] = new AlgoSJF(6, pro6);
+                        ObjectSJFArray[6] = new AlgoSJF(7, pro7);
+                        ObjectSJFArray[7] = new AlgoSJF(8, pro8);
+                        ObjectSJFArray[8] = new AlgoSJF(9, pro9);
+                        ObjectSJFArray[9] = new AlgoSJF(10, pro10);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                        object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        object[5] = new Priority(6, p6, pro6);
+                        object[6] = new Priority(7, p7, pro7);
+                        object[7] = new Priority(8, p8, pro8);
+                        object[8] = new Priority(9, p9, pro9);
+                        object[9] = new Priority(10, p10, pro10);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }
                else if(numberProcess == 11)
@@ -1116,16 +1735,63 @@ public class Processes extends JPanel
                     }
                     else if(algo.equalsIgnoreCase("2. SJF"))
                     {
-                        obj = new SJF(numberProcess, mapBurst);
+                        //obj = new SJF(numberProcess, mapBurst);
+                        ObjectSJFArray = new AlgoSJF[numberProcess];
+                        
+                        ObjectSJFArray[0] = new AlgoSJF(1, pro1);
+                        ObjectSJFArray[1] = new AlgoSJF(2, pro2);
+                        ObjectSJFArray[2] = new AlgoSJF(3, pro3);
+                        ObjectSJFArray[3] = new AlgoSJF(4, pro4);
+                        ObjectSJFArray[4] = new AlgoSJF(5, pro5);
+                        ObjectSJFArray[5] = new AlgoSJF(6, pro6);
+                        ObjectSJFArray[6] = new AlgoSJF(7, pro7);
+                        ObjectSJFArray[7] = new AlgoSJF(8, pro8);
+                        ObjectSJFArray[8] = new AlgoSJF(9, pro9);
+                        ObjectSJFArray[9] = new AlgoSJF(10, pro10);
+                        ObjectSJFArray[10] = new AlgoSJF(11, pro11);
+                        
+                        ObjectSJF.correctOrder(ObjectSJFArray);
+                    }
+                    else if(algo.equalsIgnoreCase("Please Choose"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Please choose an alogrithm!");
+                    }
+                   else if(algo.equalsIgnoreCase("3. Priority"))
+                    {
+                         object = new Priority[numberProcess];
+                        
+                        object[0] = new Priority(1, p1, pro1);
+                        object[1] = new Priority(2, p2, pro2);
+                        object[2] = new Priority(3, p3, pro3);
+                        object[3] = new Priority(4, p4, pro4);
+                        object[4] = new Priority(5, p5, pro5);
+                        object[5] = new Priority(6, p6, pro6);
+                        object[6] = new Priority(7, p7, pro7);
+                        object[7] = new Priority(8, p8, pro8);
+                        object[8] = new Priority(9, p9, pro9);
+                        object[9] = new Priority(10, p10, pro10);
+                        object[10] = new Priority(11, p11, pro11);
+                        
+                        priorityArray.correctOrder(object);
                     }
                }  
             }
-            else if(e.getSource() == algoCombo)
-            {
+            else if(e.getSource() == algoCombo)//Gets the selected algorithm from the comboBox and sets it as the selected algorithm by passing it
+            {                                   //to the setAlgoSelected method
                 String algoSelected =  (String) algoCombo.getSelectedItem();
                 setAlgoSelected(algoSelected);
+                
+                if(algoSelected == "3. Priority")//If priority is chosen as the selected algorithm, the boxes for prioritym must be drawn so to do so
+                {                               //we must get the number of processes and depending on the number of processes we then pass that to the
+                    getNumOfProcess();          //drawPriority method which will draw the same amount of textboxes as there are processes selected
+                    drawPriority(numOfProcesses);
+                }
+                else
+                {
+                    erasePriority();//If it isn't priority selected, there is no reason for the priority textfields to be shown so this calls the 
+                }                   //erasePriority method which will erase the priority textfields
             }
-            else if(e.getSource() == buttonReset)
+            else if(e.getSource() == buttonReset)//Resets every textfield to 0 as well as makes them not visible as well as the labels for each process
             {
             processCombo.setSelectedIndex(0);    
                 
@@ -1153,6 +1819,8 @@ public class Processes extends JPanel
             label10.setVisible(false);
             label11.setVisible(false);
             
+            erasePriority();
+            
             repaint();
             
             text1.setText("0");
@@ -1167,8 +1835,8 @@ public class Processes extends JPanel
             text10.setText("0");
             text11.setText("0");
             }
-            else if(e.getSource() == buttonRandom)
-            {
+            else if(e.getSource() == buttonRandom)//For the random button, if called it will execute the randomizerButton() method which will give every
+            {                                       //burst text field a random number that can be used as a burst time.
                 randomizerButton();
             }
         }    

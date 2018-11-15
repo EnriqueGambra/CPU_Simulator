@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
-class FCFS 
+class FCFS //This class is for the FCFS algorithm... all calculations for the FCFS including the output can be found here
 {
         int avgBurst;
         int avgTurnAround;
@@ -274,7 +274,7 @@ class FCFS
             JOptionPane.showMessageDialog(null, "The average wait time is " + avgWait + " \nThe average turnaround time is " + avgTurnAround);
         }
         
-        Processes obj1 = new Processes(processNum, burstMap);
+        
             
     }                                           
     
@@ -296,7 +296,6 @@ class FCFS
     public Integer[] getWaitTimes(HashMap <Integer, Integer> burstMap, int processNum)//Gets the wait times for each process then sends it to the avg
     {                                                                                   //wait time method
         Integer[] waitTime = new Integer[processNum];
-        
         
         for(int i = 0; i < waitTime.length; i++)
         {
